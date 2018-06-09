@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/main.appbar"
+        android:layout_width="match_parent"
+        android:background="@color/diksha_white"
+        android:layout_height="wrap_content">
+<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="3dip">
+
+            <LinearLayout
+                android:id="@+id/spinnerlayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                android:baselineAligned="false">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:padding="3dip">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="2dip"
+                        android:text="@string/acc_no"
+                        android:textColor="@color/diksha_black" />
+
+                    <Spinner
+                        android:id="@+id/spinner_accountno"
+                        android:layout_width="fill_parent"
+                        android:layout_height="35dp"
+                        android:layout_marginBottom="5dp"
+                        android:background="@android:drawable/btn_dropdown"
+                        android:spinnerMode="dropdown"/>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:padding="3dip">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="2dip"
+                        android:text="@string/invoice_no"
+                        android:textColor="@color/diksha_black" />
+
+
+                    <Spinner
+                        android:id="@+id/spinner_invoiceno"
+                        android:layout_width="fill_parent"
+                        android:layout_height="35dp"
+                        android:layout_marginBottom="5dp"
+                        android:background="@android:drawable/btn_dropdown"
+                        android:spinnerMode="dropdown"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/spinnerlayout"
+                android:layout_margin="5dip">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:padding="10dip">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:id="@+id/layoutamount"
+                        android:layout_height="wrap_content">
+
+                    <LinearLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toLeftOf="@+id/paynow"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+
+                        <LinearLayout
+                            android:id="@+id/idThismonth"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+
+                            <TextView
+                                android:id="@+id/thismonthcharges"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:padding="2dip"
+                                android:text="This month Charges"
+                                android:textColor="@color/diksha_headergrey"
+                                android:textSize="10sp" />
+
+                            <TextView
+                                android:id="@+id/thismonthchargesvalue"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:padding="2dip"
+                                android:textSize="16sp"
+                                android:textStyle="bold"
+                                android:text="₹1234"
+                                android:textColor="@color/diksha_black" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/viewamount"
+                            android:layout_width="0.5dip"
+                            android:layout_height="match_parent"
+                            android:background="@color/diksha_black">
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@color/diksha_lightgrey"></View>
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:id="@+id/idAmountpayable"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dip"
+                            android:layout_toLeftOf="@+id/paynow"
+                            android:layout_toRightOf="@+id/viewamount"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/amountpayable"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:padding="2dip"
+
+                                android:text="Amount Payable"
+                                android:textColor="@color/diksha_headergrey"
+                                android:textSize="10sp" />
+
+                            <TextView
+                                android:id="@+id/amountpayablevalue"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:padding="2dip"
+                                android:textStyle="bold"
+                                android:textSize="16sp"
+                                android:text="₹1234"
+
+                                android:textColor="@color/diksha_black" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/paynow"
+                        android:layout_width="50dp"
+                        android:layout_centerVertical="true"
+                        android:layout_height="30dip"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentTop="true"
+                        android:background="@drawable/button_orange_bg"
+                        android:text="Pay Now"
+                        android:textColor="@color/diksha_white"
+                        android:textSize="7sp" />
+                    </RelativeLayout>
+                    <View
+                        android:id="@+id/viewamountline"
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_below="@+id/layoutamount"
+                        android:layout_margin="7dip"
+                        android:background="@color/diksha_lightgrey"></View>
+
+
+
+                    <LinearLayout
+                        android:id="@+id/layoutdate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/viewamountline"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+
+                        <LinearLayout
+                            android:id="@+id/idbilldatelayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_centerVertical="true"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+
+                            <TextView
+                                android:id="@+id/billdatename"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:padding="2dip"
+                                android:text="Bill Date"
+                                android:textColor="@color/diksha_headergrey"
+                                android:textSize="10sp"  />
+
+                            <TextView
+                                android:id="@+id/billdatevalue"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:padding="2dip"
+                                android:text="24 March 2018"
+                                android:textSize="16sp"
+                                android:textColor="#545454"
+                                 />
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:id="@+id/idbillduedatelayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="right"
+                            android:layout_marginLeft="10dip"
+                            android:layout_toLeftOf="@+id/paynow"
+                            android:layout_toRightOf="@+id/viewamount"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/billduedate"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="right"
+                                android:padding="2dip"
+                                android:text="Bill Due Date"
+                                android:textColor="@color/diksha_headergrey"
+                                android:textSize="10sp"  />
+
+                            <TextView
+                                android:id="@+id/billduedatevalue"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="right"
+                                android:padding="2dip"
+
+                                android:text="24 March 2018"
+                                android:textSize="16sp"
+                                android:textColor="#545454" />
+                        </LinearLayout>
+                    </LinearLayout>
+                    <View
+                        android:id="@+id/viewdateline"
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_below="@+id/layoutdate"
+                        android:layout_margin="7dip"
+                        android:background="@color/diksha_lightgrey"></View>
+
+                    <TextView
+                        android:id="@+id/viewbill"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:padding="2dip"
+                        android:layout_alignParentRight="true"
+                        android:layout_below="@+id/viewdateline"
+                        android:text="View Bill"
+                        android:textSize="12sp"
+                        android:textColor="#1E90FF" />
+                    <TextView
+                        android:id="@+id/emailbill"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="left"
+                        android:padding="2dip"
+                        android:layout_alignParentLeft="true"
+                        android:layout_below="@+id/viewdateline"
+                        android:text="Email Bill"
+                        android:textSize="12sp"
+                        android:textColor="#1E90FF" />
+
+
+                </RelativeLayout>
+
+            </android.support.v7.widget.CardView>
+
+        </RelativeLayout>
+
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/diksha_orange"
+            app:tabGravity="fill"
+            app:tabIndicatorColor="@color/diksha_white"
+            app:tabMode="scrollable"
+            app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"
+            app:tabSelectedTextColor="@color/diksha_lightgrey"
+            app:tabTextColor="@android:color/white"></android.support.design.widget.TabLayout>
+</LinearLayout>
+    </android.support.design.widget.AppBarLayout>
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewpager"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </android.support.v4.view.ViewPager>
+
+
+
+</android.support.design.widget.CoordinatorLayout>

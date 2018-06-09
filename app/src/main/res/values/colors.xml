@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#FE8512</color>
+    <color name="colorPrimaryDark">#FE8512</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="diksha_orange">#FE8512</color>
+    <color name="diksha_white">#FFFFFF</color>
+    <color name="diksha_black">#000000</color>
+    <color name="diksha_lightgrey">#D3D3D3</color>
+    <color name="diksha_headergrey">#939393</color>
+    <color name="diksha_blue">#1E90FF</color>
+    <color name="diksha_back_listview">#F8F8F8</color>
+
+</resources>

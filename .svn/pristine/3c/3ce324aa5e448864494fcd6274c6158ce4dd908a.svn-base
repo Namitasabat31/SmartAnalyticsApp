@@ -1,0 +1,266 @@
+package smartanalytics.diksha.com.smartanalytics.commonutils;
+
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+
+import smartanalytics.diksha.com.smartanalytics.data.TopManagementData;
+
+/**
+ * Created by A1GLJZJ1 on 5/18/2018.
+ */
+
+public class DBHelper {
+
+
+    public TopManagementData showCustSegmentWiseRevenueData(String selectedMonth, SQLiteDatabase mDatabase) {
+
+        TopManagementData data = new TopManagementData();
+        String query = "select bill_mon,description,sum(this_months_charges)charges from dirs_file_master m, airtel_customer_classification c where m.status=5 " +
+                "and m.CUSTOMER_CLASSIFICATION=c.classification_id AND bill_mon='"+selectedMonth+"' group by bill_mon,description;";
+        Cursor cursor = mDatabase.rawQuery(query, null);
+        if (cursor != null) {
+            if (cursor.getCount() > 0) {
+                int i = 0;
+                String[] billMonth = new String[cursor.getCount()];
+                int[] amount = new int[cursor.getCount()];
+                String [] desc = new String[cursor.getCount()];
+                if (cursor.moveToFirst()) {
+                    do {
+                       // billMonth[i] = cursor.getString(cursor.getColumnIndex("BILL_MON"));
+                        desc[i] = cursor.getString(cursor.getColumnIndex("DESCRIPTION"));
+                        amount[i] = cursor.getInt(cursor.getColumnIndex("charges"));
+                        i++;
+                    } while (cursor.moveToNext());
+                }
+                data.setAmount(amount);
+                data.setDescription(desc);
+                data.setBillMonth(billMonth);
+                cursor.close();
+                mDatabase.close();
+            }
+
+        }
+
+        return data;
+    }
+
+    public TopManagementData showCustSegmentWiseRevenue(SQLiteDatabase mDatabase) {
+        TopManagementData data = new TopManagementData();
+        String query = "select distinct bill_mon  from dirs_file_master m, airtel_customer_classification c where m.status=5\n" +
+                "and m.CUSTOMER_CLASSIFICATION=c.classification_id group by bill_mon,description;";
+
+        Cursor cursor = mDatabase.rawQuery(query, null);
+        if (cursor != null) {
+            if (cursor.getCount() > 0) {
+                int i = 0;
+                String[] billMonth = new String[cursor.getCount()];
+                int[] amount = new int[cursor.getCount()];
+                String [] desc = new String[cursor.getCount()];
+                if (cursor.moveToFirst()) {
+                    do {
+                        billMonth[i] = cursor.getString(cursor.getColumnIndex("BILL_MON"));
+                       /* desc[i] = cursor.getString(cursor.getColumnIndex("DESCRIPTION"));
+                        amount[i] = cursor.getInt(cursor.getColumnIndex("charges"));*/
+                        i++;
+                    } while (cursor.moveToNext());
+                }
+                data.setAmount(amount);
+                data.setDescription(desc);
+                data.setBillMonth(billMonth);
+                cursor.close();
+                mDatabase.close();
+            }
+
+        }
+        return  data;
+    }
+
+    public TopManagementData showBusinessUnitwiseRevenue(SQLiteDatabase mDatabase) {
+        TopManagementData data = new TopManagementData();
+        String query = "select distinct bill_mon from dirs_file_master m, airtel_business_unit b where m.status=5 " +
+                "and m.business_unit=b.unit_id group by bill_mon,description;";
+
+        Cursor cursor = mDatabase.rawQuery(query, null);
+        if (cursor != null) {
+            if (cursor.getCount() > 0) {
+                int i = 0;
+                String[] billMonth = new String[cursor.getCount()];
+                int[] amount = new int[cursor.getCount()];
+                String [] desc = new String[cursor.getCount()];
+                if (cursor.moveToFirst()) {
+                    do {
+                        billMonth[i] = cursor.getString(cursor.getColumnIndex("BILL_MON"));
+                       /* desc[i] = cursor.getString(cursor.getColumnIndex("DESCRIPTION"));
+                        amount[i] = cursor.getInt(cursor.getColumnIndex("charges"));*/
+                        i++;
+                    } while (cursor.moveToNext());
+                }
+                data.setAmount(amount);
+                data.setDescription(desc);
+                data.setBillMonth(billMonth);
+                cursor.close();
+                mDatabase.close();
+            }
+
+        }
+        return  data;
+    }
+
+    public TopManagementData showBusinessUnitwiseRevenueData(String selectedMonth, SQLiteDatabase mDatabase) {
+
+        TopManagementData data = new TopManagementData();
+        String query = "select bill_mon,description,sum(this_months_charges)charges from dirs_file_master m, airtel_business_unit b where m.status=5 " +
+                "and m.business_unit=b.unit_id AND bill_mon = '"+selectedMonth+"' group by bill_mon,description;";
+        Cursor cursor = mDatabase.rawQuery(query, null);
+        if (cursor != null) {
+            if (cursor.getCount() > 0) {
+                int i = 0;
+                String[] billMonth = new String[cursor.getCount()];
+                int[] amount = new int[cursor.getCount()];
+                String [] desc = new String[cursor.getCount()];
+                if (cursor.moveToFirst()) {
+                    do {
+                        // billMonth[i] = cursor.getString(cursor.getColumnIndex("BILL_MON"));
+                        desc[i] = cursor.getString(cursor.getColumnIndex("DESCRIPTION"));
+                        amount[i] = cursor.getInt(cursor.getColumnIndex("charges"));
+                        i++;
+                    } while (cursor.moveToNext());
+                }
+                data.setAmount(amount);
+                data.setDescription(desc);
+                data.setBillMonth(billMonth);
+                cursor.close();
+                mDatabase.close();
+            }
+
+        }
+
+        return data;
+    }
+
+    public TopManagementData top10RevenuePlansData(String selectedMonth, SQLiteDatabase mDatabase) {
+        TopManagementData data = new TopManagementData();
+        String query = "select bill_month,bill_plan_name,charges from ( select bill_month,bill_plan_name,sum(this_month_charges)charges from dirs_files_xml x, airtel_bill_plan_sum p " +
+                "where file_type=2 and x.BILL_PLAN_ID = p.offer_id AND bill_month='"+selectedMonth+"' group by bill_month,bill_plan_name order by charges desc) limit 10;";
+        Cursor cursor = mDatabase.rawQuery(query, null);
+        if (cursor != null) {
+            if (cursor.getCount() > 0) {
+                int i = 0;
+                String[] billMonth = new String[cursor.getCount()];
+                int[] amount = new int[cursor.getCount()];
+                String [] desc = new String[cursor.getCount()];
+                if (cursor.moveToFirst()) {
+                    do {
+                        // billMonth[i] = cursor.getString(cursor.getColumnIndex("BILL_MON"));
+                        desc[i] = cursor.getString(cursor.getColumnIndex("bill_plan_name"));
+                        amount[i] = cursor.getInt(cursor.getColumnIndex("charges"));
+                        i++;
+                    } while (cursor.moveToNext());
+                }
+                data.setAmount(amount);
+                data.setDescription(desc);
+                data.setBillMonth(billMonth);
+                cursor.close();
+                mDatabase.close();
+            }
+
+        }
+
+        return data;
+    }
+
+    public TopManagementData least10RevenuePlansData(String selectedMonth, SQLiteDatabase mDatabase) {
+        TopManagementData data = new TopManagementData();
+        String query = "select bill_month,bill_plan_name,charges from ( select bill_month,bill_plan_name,sum(this_month_charges)charges  from dirs_files_xml x, airtel_bill_plan_sum p\n" +
+                "where file_type=2 and x.BILL_PLAN_ID = p.offer_id AND bill_month='"+selectedMonth+"' group by bill_month,bill_plan_name order by charges) limit 10;";
+        Cursor cursor = mDatabase.rawQuery(query, null);
+        if (cursor != null) {
+            if (cursor.getCount() > 0) {
+                int i = 0;
+                String[] billMonth = new String[cursor.getCount()];
+                int[] amount = new int[cursor.getCount()];
+                String [] desc = new String[cursor.getCount()];
+                if (cursor.moveToFirst()) {
+                    do {
+                        // billMonth[i] = cursor.getString(cursor.getColumnIndex("BILL_MON"));
+                        desc[i] = cursor.getString(cursor.getColumnIndex("bill_plan_name"));
+                        amount[i] = cursor.getInt(cursor.getColumnIndex("charges"));
+                        i++;
+                    } while (cursor.moveToNext());
+                }
+                data.setAmount(amount);
+                data.setDescription(desc);
+                data.setBillMonth(billMonth);
+                cursor.close();
+                mDatabase.close();
+            }
+
+        }
+
+        return data;
+    }
+
+    public TopManagementData top10RevenuePlans(SQLiteDatabase mDatabase) {
+        TopManagementData data = new TopManagementData();
+        String query = "select distinct bill_month from ( select bill_month,bill_plan_name,sum(this_month_charges)charges from dirs_files_xml x, airtel_bill_plan_sum p " +
+                "where file_type=2 and x.BILL_PLAN_ID = p.offer_id group by bill_month,bill_plan_name order by charges desc) limit 10;";
+
+        Cursor cursor = mDatabase.rawQuery(query, null);
+        if (cursor != null) {
+            if (cursor.getCount() > 0) {
+                int i = 0;
+                String[] billMonth = new String[cursor.getCount()];
+                int[] amount = new int[cursor.getCount()];
+                String [] desc = new String[cursor.getCount()];
+                if (cursor.moveToFirst()) {
+                    do {
+                        billMonth[i] = cursor.getString(cursor.getColumnIndex("bill_month"));
+                       /* desc[i] = cursor.getString(cursor.getColumnIndex("DESCRIPTION"));
+                        amount[i] = cursor.getInt(cursor.getColumnIndex("charges"));*/
+                        i++;
+                    } while (cursor.moveToNext());
+                }
+                data.setAmount(amount);
+                data.setDescription(desc);
+                data.setBillMonth(billMonth);
+                cursor.close();
+                mDatabase.close();
+            }
+
+        }
+        return  data;
+
+    }
+
+    public TopManagementData least10RevenuePlans(SQLiteDatabase mDatabase) {
+        TopManagementData data = new TopManagementData();
+        String query = "select distinct bill_month from (select bill_month,bill_plan_name,sum(this_month_charges)charges  from dirs_files_xml x, airtel_bill_plan_sum p " +
+                "where file_type=2 and x.BILL_PLAN_ID = p.offer_id group by bill_month,bill_plan_name order by charges) limit 10;";
+
+        Cursor cursor = mDatabase.rawQuery(query, null);
+        if (cursor != null) {
+            if (cursor.getCount() > 0) {
+                int i = 0;
+                String[] billMonth = new String[cursor.getCount()];
+                int[] amount = new int[cursor.getCount()];
+                String [] desc = new String[cursor.getCount()];
+                if (cursor.moveToFirst()) {
+                    do {
+                        billMonth[i] = cursor.getString(cursor.getColumnIndex("bill_month"));
+                       /* desc[i] = cursor.getString(cursor.getColumnIndex("DESCRIPTION"));
+                        amount[i] = cursor.getInt(cursor.getColumnIndex("charges"));*/
+                        i++;
+                    } while (cursor.moveToNext());
+                }
+                data.setAmount(amount);
+                data.setDescription(desc);
+                data.setBillMonth(billMonth);
+                cursor.close();
+                mDatabase.close();
+            }
+
+        }
+        return  data;
+    }
+}
+

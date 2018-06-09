@@ -1,0 +1,73 @@
+package smartanalytics.diksha.com.smartanalytics.fragment;
+
+
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import com.squareup.otto.Subscribe;
+
+import smartanalytics.diksha.com.smartanalytics.R;
+import smartanalytics.diksha.com.smartanalytics.commonutils.LogUtils;
+import smartanalytics.diksha.com.smartanalytics.network.OttoEvent;
+
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public class PaymentFragment extends BaseFragment {
+
+    public String TAG = PaymentFragment.class.getSimpleName();
+    public PaymentFragment() {
+        // Required empty public constructor
+    }
+
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View v = inflater.inflate(R.layout.fragment_payment, container, false);
+
+        return v;
+    }
+
+    @Override
+    protected <T> void onResponse(T t, int id) throws Exception {
+        LogUtils.logD(TAG, t.toString());
+
+    }
+
+    @Subscribe
+    public void onOttoEventReceived(OttoEvent event) {
+        LogUtils.logD(TAG, "DashboardAccountsFragment");
+
+        try {
+            super.onOttoEventReceived(event);
+
+        } catch (Exception e) {
+            LogUtils.logD(TAG, "Exception --> " + e.getMessage());
+        }
+
+    }
+
+    @Override
+    public void onPrepareOptionsMenu(Menu menu) {
+        super.onPrepareOptionsMenu(menu);
+        menu.clear();
+    }
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        menu.clear();
+    }
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
+}

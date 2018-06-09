@@ -1,0 +1,42 @@
+-injars 'D:\Diksha Projects\Android projects\SmartAnalytics\app\build\intermediates\transforms\jarMerging\release\0.jar'
+-outjars 'D:\Diksha Projects\Android projects\SmartAnalytics\app\build\intermediates\multi-dex\release\componentClasses.jar'
+
+-libraryjars 'C:\Users\A1GLJZJ1\AppData\Local\Android\Sdk\build-tools\27.0.3\lib\shrinkedAndroid.jar'
+
+-forceprocessing
+-dontoptimize
+-dontobfuscate
+-dontusemixedcaseclassnames
+-dontpreverify
+-dontnote **
+-dontwarn **
+-printconfiguration 'D:\Diksha Projects\Android projects\SmartAnalytics\app\build\intermediates\multi-dex\release\components.flags'
+
+
+# Referenced at D:\Diksha Projects\Android projects\SmartAnalytics\app\build\intermediates\manifests\full\release\AndroidManifest.xml:14
+-keep class smartanalytics.diksha.com.smartanalytics.core.SmartAppication {
+    <init>(...);
+}
+
+-keep public class * extends android.app.Instrumentation {
+    <init>();
+}
+
+-keep public class * extends android.app.Application {
+    <init>();
+    void attachBaseContext(android.content.Context);
+}
+
+-keep public class * extends android.app.backup.BackupAgent {
+    <init>();
+}
+
+-keep public class * extends java.lang.annotation.Annotation {
+    <fields>;
+    <methods>;
+}
+
+-keep class com.android.tools.ir.** {
+    <fields>;
+    <methods>;
+}

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group
+        android:id="@+id/group">
+
+        <item
+            android:id="@+id/nav_item_revenue"
+            android:title="Customer segment wise revenue"/>
+        <item
+            android:id="@+id/nav_item_businessunit"
+            android:title="Business unit wise revenue"/>
+        <item
+            android:id="@+id/nav_item_toprevenueplans"
+            android:title="Top 10 revenue plans"/>
+        <item
+            android:id="@+id/nav_item_usagebytypedayleastrevenueplans"
+            android:title="Least 10 revenue plans"/>
+
+    </group>
+
+</menu>

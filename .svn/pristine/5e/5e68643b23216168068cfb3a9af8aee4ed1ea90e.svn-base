@@ -1,0 +1,175 @@
+package smartanalytics.diksha.com.smartanalytics.fragment;
+
+
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.Spinner;
+import android.widget.TextView;
+
+import com.squareup.otto.Subscribe;
+
+import java.util.ArrayList;
+
+import smartanalytics.diksha.com.smartanalytics.R;
+import smartanalytics.diksha.com.smartanalytics.adapter.RecyclerViewAdapter;
+import smartanalytics.diksha.com.smartanalytics.commonutils.CommonUtility;
+import smartanalytics.diksha.com.smartanalytics.commonutils.LogUtils;
+import smartanalytics.diksha.com.smartanalytics.core.SmartAppication;
+import smartanalytics.diksha.com.smartanalytics.database.DatabaseHelper;
+import smartanalytics.diksha.com.smartanalytics.network.OttoEvent;
+
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public class ItemizedFragment extends BaseFragment {
+
+    public String TAG = ItemizedFragment.class.getSimpleName();
+    public ItemizedFragment() {
+        // Required empty public constructor
+    }
+    RecyclerView recyclerView;
+    private RecyclerViewAdapter itemizedAdapter;
+    private ArrayList list;
+    private DatabaseHelper databaseHelper;
+    private String selectedAccNo,selectedInvoiceNo;
+    private LinearLayout linearLayoutCategory,linearLayoutHours,linearLayoutCost,linearLayoutUsage;
+    private TextView tvAccNo,tvInvoiceNo;
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        menu.clear();
+        inflater.inflate(R.menu.itemized_menu, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        setHasOptionsMenu(true);
+        View v = inflater.inflate(R.layout.fragment_itemized, container, false);
+        recyclerView = v.findViewById(R.id.recycler_view_itemized);
+        databaseHelper = SmartAppication.getInstance().getmDatabaseHelper();
+        linearLayoutCategory = v.findViewById(R.id.layoutHeaderCategory);
+        linearLayoutHours = v.findViewById(R.id.layoutHeaderHoursofday);
+        linearLayoutCost = v.findViewById(R.id.layoutHeaderCostbytypeandday);
+        linearLayoutUsage = v.findViewById(R.id.layoutHeaderUsagebytypeandday);
+
+        tvAccNo = v.findViewById(R.id.tvAccountNo);
+        tvInvoiceNo = v.findViewById(R.id.tvInvoiceNo);
+
+        linearLayoutHours.setVisibility(View.GONE);
+        linearLayoutCost.setVisibility(View.GONE);
+        linearLayoutUsage.setVisibility(View.GONE);
+        selectedAccNo = SmartAppication.getInstance().getSelectedAccNo();
+        tvAccNo.setText(selectedAccNo);
+        selectedInvoiceNo= SmartAppication.getInstance().getSelectedInvoiceNo();
+        tvInvoiceNo.setText(selectedInvoiceNo);
+        LinearLayoutManager mLayout = new LinearLayoutManager(getActivity().getApplicationContext());
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(mLayout);
+
+        list = databaseHelper.getItemizedCategoryData(selectedAccNo,selectedInvoiceNo);
+        if(list.size() > 0){
+            linearLayoutCategory.setVisibility(View.VISIBLE);
+            getCategoryData(list,RecyclerViewAdapter.POPULATE_ITEMIZED_CATEGORY);
+        }else{
+            CommonUtility.displayToast(getActivity(), getResources().getString(R.string.no_data_found));
+        }
+
+
+        return v;
+    }
+
+    @Override
+    protected <T> void onResponse(T t, int id) throws Exception {
+        LogUtils.logD(TAG, t.toString());
+
+    }
+
+    @Subscribe
+    public void onOttoEventReceived(OttoEvent event) {
+        LogUtils.logD(TAG, "DashboardAccountsFragment");
+
+        try {
+            super.onOttoEventReceived(event);
+
+        } catch (Exception e) {
+            LogUtils.logD(TAG, "Exception --> " + e.getMessage());
+        }
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int itemId = item.getItemId();
+
+        if(itemId == R.id.nav_item_category){
+
+            linearLayoutHours.setVisibility(View.GONE);
+            linearLayoutCost.setVisibility(View.GONE);
+            linearLayoutUsage.setVisibility(View.GONE);
+            list = databaseHelper.getItemizedCategoryData(selectedAccNo,selectedInvoiceNo);
+            if(list.size() > 0){
+                linearLayoutCategory.setVisibility(View.VISIBLE);
+                getCategoryData(list,RecyclerViewAdapter.POPULATE_ITEMIZED_CATEGORY);
+            }else{
+                CommonUtility.displayToast(getActivity(), getResources().getString(R.string.no_data_found));
+            }
+
+        }else if(itemId == R.id.nav_item_hoursofday){
+            linearLayoutCategory.setVisibility(View.GONE);
+            linearLayoutUsage.setVisibility(View.GONE);
+            linearLayoutCost.setVisibility(View.GONE);
+            list = databaseHelper.getItemizedHoursData(selectedAccNo,selectedInvoiceNo);
+            if(list.size() > 0){
+                linearLayoutHours.setVisibility(View.VISIBLE);
+                getCategoryData(list,RecyclerViewAdapter.POPULATE_ITEMIZED_HOURS);
+            }else{
+                CommonUtility.displayToast(getActivity(), getResources().getString(R.string.no_data_found));
+            }
+
+        }else if(itemId == R.id.nav_item_costbytypeandday){
+            linearLayoutCategory.setVisibility(View.GONE);
+            linearLayoutHours.setVisibility(View.GONE);
+
+            linearLayoutUsage.setVisibility(View.GONE);
+            list = databaseHelper.getItemizedCostData(selectedAccNo,selectedInvoiceNo);
+            if(list.size() > 0){
+                linearLayoutCost.setVisibility(View.VISIBLE);
+                getCategoryData(list,RecyclerViewAdapter.POPULATE_ITEMIZED_COST);
+            }else{
+                CommonUtility.displayToast(getActivity(), getResources().getString(R.string.no_data_found));
+            }
+
+        }else if(itemId == R.id.nav_item_usagebytypeday){
+            linearLayoutCategory.setVisibility(View.GONE);
+            linearLayoutHours.setVisibility(View.GONE);
+            linearLayoutCost.setVisibility(View.GONE);
+
+            list = databaseHelper.getItemizedUsageData(selectedAccNo,selectedInvoiceNo);
+            if(list.size() > 0){
+                linearLayoutUsage.setVisibility(View.VISIBLE);
+                getCategoryData(list,RecyclerViewAdapter.POPULATE_ITEMIZED_USAGE);
+            }else{
+                CommonUtility.displayToast(getActivity(), getResources().getString(R.string.no_data_found));
+            }
+
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void getCategoryData(ArrayList list, int populateItemizedCategory) {
+        itemizedAdapter = new RecyclerViewAdapter(list, populateItemizedCategory, getActivity());
+        recyclerView.setAdapter(itemizedAdapter);
+    }
+}

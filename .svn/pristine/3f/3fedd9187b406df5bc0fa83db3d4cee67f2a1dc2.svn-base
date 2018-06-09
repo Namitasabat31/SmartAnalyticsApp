@@ -1,0 +1,342 @@
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/diksha_white">
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/spinnerlayout"
+            android:layout_margin="5dip">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:padding="5dip"
+                    android:id="@+id/tvHeaderAccountsummary"
+                    android:text="Your Service Summary for this Month"
+                    android:textSize="12sp"
+                    android:textColor="@color/diksha_headergrey"
+                    android:background="#EDEDED"
+                    android:layout_height="35dip" />
+                <View
+                    android:layout_width="match_parent"
+                    android:id="@+id/viewHeader"
+                    android:layout_below="@+id/tvHeaderAccountsummary"
+                    android:layout_height="0.5dp"
+                    android:background="@color/diksha_lightgrey">
+
+                </View>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:id="@+id/tvMobService"
+                    android:text="Mobile Service"
+                    android:layout_marginTop="3dip"
+                    android:gravity="center_vertical"
+                    android:layout_below="@+id/viewHeader"
+                    android:drawableLeft="@mipmap/ic_phone"
+                    android:textColor="@color/diksha_headergrey"
+                    android:textStyle="bold"
+                    android:layout_height="wrap_content" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_below="@+id/tvMobService"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/layoutprevbal"
+                    android:paddingLeft="7dip"
+                    android:paddingRight="7dip"
+                    android:weightSum="2">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:orientation="vertical"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:padding="3dip"
+                            android:id="@+id/tvVoice"
+                            android:layout_marginLeft="5dip"
+                            android:text="Voice"
+                            android:textColor="@color/diksha_headergrey"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:padding="3dip"
+                            android:id="@+id/tvSMS"
+                            android:layout_marginLeft="5dip"
+                            android:text="SMS"
+                            android:textColor="@color/diksha_headergrey"
+                            android:layout_height="wrap_content" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:padding="3dip"
+                            android:id="@+id/tvData"
+                            android:layout_marginLeft="5dip"
+                            android:text="Data"
+                            android:textColor="@color/diksha_headergrey"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:orientation="vertical"
+                        android:layout_weight="1"
+                        android:layout_marginRight="7dip"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:padding="3dip"
+                            android:id="@+id/tvVoiceValue"
+                            android:layout_marginLeft="5dip"
+                            android:gravity="right"
+                            android:text="₹0.00"
+                            android:textColor="@color/diksha_headergrey"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:padding="3dip"
+                            android:gravity="right"
+                            android:id="@+id/tvSMSValue"
+                            android:layout_marginLeft="5dip"
+                            android:text="₹0.00"
+                            android:textColor="@color/diksha_headergrey"
+                            android:layout_height="wrap_content" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:padding="3dip"
+                            android:gravity="right"
+                            android:id="@+id/tvdataValue"
+                            android:layout_marginLeft="5dip"
+                            android:text="₹0.00"
+                            android:textColor="@color/diksha_headergrey"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="5dip"
+                    android:id="@+id/viewbelowprev"
+                    android:layout_marginLeft="7dip"
+                    android:layout_marginRight="7dip"
+                    android:layout_below="@+id/layoutprevbal"
+                    android:layout_height="0.5dp"
+                    android:background="@color/diksha_lightgrey">
+
+                </View>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:id="@+id/tvFixedlineservice"
+                    android:text="Fixed Line Service"
+                    android:layout_marginTop="3dip"
+                    android:layout_below="@+id/viewbelowprev"
+                    android:gravity="center_vertical"
+                    android:drawableLeft="@mipmap/ic_phone"
+                    android:textColor="@color/diksha_headergrey"
+                    android:textStyle="bold"
+                    android:layout_height="wrap_content" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_below="@+id/tvFixedlineservice"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/layoutmonthlyrental"
+                    android:paddingLeft="7dip"
+                    android:paddingRight="7dip"
+                    android:weightSum="2">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:orientation="vertical"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:padding="3dip"
+                            android:id="@+id/tvVoiceFL"
+                            android:layout_marginLeft="5dip"
+                            android:text="Voice"
+                            android:textColor="@color/diksha_headergrey"
+                            android:layout_height="wrap_content" />
+
+
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:orientation="vertical"
+                        android:layout_weight="1"
+                        android:layout_marginRight="7dip"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:padding="3dip"
+                            android:id="@+id/tvVoiceFLValue"
+                            android:layout_marginLeft="5dip"
+                            android:gravity="right"
+                            android:text="₹0.00"
+                            android:textColor="@color/diksha_headergrey"
+                            android:layout_height="wrap_content" />
+
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="5dip"
+                    android:id="@+id/viewbelowfixedline"
+                    android:layout_marginLeft="7dip"
+                    android:layout_marginRight="7dip"
+                    android:layout_below="@+id/layoutmonthlyrental"
+                    android:layout_height="0.5dp"
+                    android:background="@color/diksha_lightgrey"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="3dip"
+                    android:id="@+id/tvBroadband"
+                    android:text="Broadband Service"
+                    android:layout_below="@+id/viewbelowfixedline"
+                    android:textColor="@color/diksha_headergrey"
+                    android:textStyle="bold"
+                    android:gravity="center_vertical"
+                    android:drawableLeft="@mipmap/ic_phone"
+                    android:layout_height="wrap_content" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_below="@+id/tvBroadband"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/layoutBroadband"
+                    android:paddingLeft="7dip"
+                    android:paddingRight="7dip"
+                    android:weightSum="2">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:orientation="vertical"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:padding="3dip"
+                            android:id="@+id/tvDataBR"
+                            android:layout_marginLeft="5dip"
+                            android:text="Data"
+                            android:textColor="@color/diksha_headergrey"
+                            android:layout_height="wrap_content" />
+
+
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:orientation="vertical"
+                        android:layout_weight="1"
+                        android:layout_marginRight="7dip"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:padding="3dip"
+                            android:id="@+id/tvDataBRValue"
+                            android:layout_marginLeft="5dip"
+                            android:gravity="right"
+                            android:text="₹0.00"
+                            android:textColor="@color/diksha_headergrey"
+                            android:layout_height="wrap_content" />
+
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="5dip"
+                    android:id="@+id/viewbelowbroadband"
+                    android:layout_marginLeft="7dip"
+                    android:layout_marginRight="7dip"
+                    android:layout_below="@+id/layoutBroadband"
+                    android:layout_height="0.5dp"
+                    android:background="@color/diksha_lightgrey"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_below="@+id/viewbelowbroadband"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/layouttotalAccount"
+                    android:padding="7dip"
+                    android:weightSum="2">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:orientation="vertical"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:padding="5dip"
+                            android:id="@+id/tvTotalAccount"
+                            android:text="Total"
+                            android:textColor="@color/diksha_headergrey"
+                            android:textStyle="bold"
+                            android:layout_height="wrap_content" />
+
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:orientation="vertical"
+                        android:layout_weight="1"
+                        android:layout_marginRight="7dip"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:padding="5dip"
+                            android:id="@+id/tvTotalAccountvalue"
+                            android:gravity="right"
+                            android:text="₹0.00"
+                            android:textColor="@color/diksha_headergrey"
+                            android:textStyle="bold"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+    </RelativeLayout>
+</android.support.v4.widget.NestedScrollView>

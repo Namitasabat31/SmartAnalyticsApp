@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group
+        android:id="@+id/group">
+
+        <item
+            android:id="@+id/nav_item_category"
+            android:title="@string/category"/>
+        <item
+            android:id="@+id/nav_item_hoursofday"
+            android:title="@string/hoursofday"/>
+        <item
+            android:id="@+id/nav_item_costbytypeandday"
+            android:title="@string/costbytypeandday"/>
+        <item
+            android:id="@+id/nav_item_usagebytypeday"
+            android:title="@string/usagebytypeday"/>
+
+       </group>
+
+</menu>

@@ -1,0 +1,289 @@
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/diksha_white">
+       <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/spinnerlayout"
+        android:layout_margin="5dip">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+    <TextView
+        android:layout_width="match_parent"
+        android:padding="5dip"
+        android:id="@+id/tvHeaderAccountsummary"
+        android:text="Your Account Summary for this Month"
+        android:textSize="12sp"
+        android:textColor="@color/diksha_headergrey"
+        android:background="#EDEDED"
+        android:layout_height="35dip" />
+            <View
+                android:layout_width="match_parent"
+                android:id="@+id/viewHeader"
+                android:layout_below="@+id/tvHeaderAccountsummary"
+                android:layout_height="0.5dp"
+                android:background="@color/diksha_lightgrey">
+
+            </View>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_below="@+id/viewHeader"
+            android:layout_height="wrap_content"
+            android:id="@+id/layoutprevbal"
+            android:padding="7dip"
+            android:weightSum="2">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:padding="5dip"
+                android:id="@+id/tvPrevBal"
+                android:text="Previous Balance"
+                android:textColor="@color/diksha_headergrey"
+                android:textStyle="bold"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_width="match_parent"
+                android:padding="3dip"
+                android:id="@+id/tvPayments"
+                android:layout_marginLeft="5dip"
+                android:text="Payments"
+                android:textColor="@color/diksha_headergrey"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:padding="3dip"
+                android:id="@+id/tvAdjustments"
+                android:layout_marginLeft="5dip"
+                android:text="Adjustments"
+                android:textColor="@color/diksha_headergrey"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:layout_marginRight="7dip"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:padding="5dip"
+                    android:id="@+id/tvPrevBalvalue"
+                    android:gravity="right"
+                    android:text="₹4,139.00"
+                    android:textColor="@color/diksha_headergrey"
+                    android:textStyle="bold"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:padding="3dip"
+                    android:id="@+id/tvPaymentsValue"
+                    android:layout_marginLeft="5dip"
+                    android:gravity="right"
+                    android:text="₹0.00"
+                    android:textColor="@color/diksha_headergrey"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:padding="3dip"
+                    android:gravity="right"
+                    android:id="@+id/tvAdjustmentsValue"
+                    android:layout_marginLeft="5dip"
+                    android:text="₹0.00"
+                    android:textColor="@color/diksha_headergrey"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_marginTop="5dip"
+                android:id="@+id/viewbelowprev"
+                android:layout_marginLeft="7dip"
+                android:layout_marginRight="7dip"
+                android:layout_below="@+id/layoutprevbal"
+                android:layout_height="0.5dp"
+                android:background="@color/diksha_lightgrey">
+
+            </View>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_below="@+id/viewbelowprev"
+                android:layout_height="wrap_content"
+                android:id="@+id/layoutmonthlyrental"
+                android:padding="7dip"
+                android:weightSum="2">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:padding="5dip"
+                        android:id="@+id/tvMonthlyrental"
+                        android:text="Monthly Rentals"
+                        android:textColor="@color/diksha_headergrey"
+                        android:textStyle="bold"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:padding="3dip"
+                        android:id="@+id/tvUsage"
+                        android:layout_marginLeft="5dip"
+                        android:text="Usage"
+                        android:textColor="@color/diksha_headergrey"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:padding="3dip"
+                        android:id="@+id/tvTaxes"
+                        android:layout_marginLeft="5dip"
+                        android:text="Taxes"
+                        android:textColor="@color/diksha_headergrey"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:padding="3dip"
+                        android:id="@+id/tvAmountDue"
+                        android:layout_marginLeft="5dip"
+                        android:text="Amount Due"
+                        android:textColor="@color/diksha_headergrey"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:layout_marginRight="7dip"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:padding="5dip"
+                        android:id="@+id/tvMonthlyrentalvalue"
+                        android:gravity="right"
+                        android:text="1098.00"
+                        android:textColor="@color/diksha_headergrey"
+                        android:textStyle="bold"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:padding="3dip"
+                        android:id="@+id/tvUsageValue"
+                        android:layout_marginLeft="5dip"
+                        android:gravity="right"
+                        android:text="₹0.00"
+                        android:textColor="@color/diksha_headergrey"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:padding="3dip"
+                        android:gravity="right"
+                        android:id="@+id/tvTaxesValue"
+                        android:layout_marginLeft="5dip"
+                        android:text="₹0.00"
+                        android:textColor="@color/diksha_headergrey"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:padding="3dip"
+                        android:id="@+id/tvAmountDueValue"
+                        android:layout_marginLeft="5dip"
+                        android:text="₹0.00"
+                        android:gravity="right"
+                        android:textColor="@color/diksha_headergrey"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_marginTop="5dip"
+                android:id="@+id/viewbelowrental"
+                android:layout_marginLeft="7dip"
+                android:layout_marginRight="7dip"
+                android:layout_below="@+id/layoutmonthlyrental"
+                android:layout_height="0.5dp"
+                android:background="@color/diksha_lightgrey"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_below="@+id/viewbelowrental"
+                android:layout_height="wrap_content"
+                android:id="@+id/layouttotalAccount"
+                android:padding="7dip"
+                android:weightSum="2">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:padding="5dip"
+                        android:id="@+id/tvTotalAccount"
+                        android:text="Amount due after due date"
+                        android:textColor="@color/diksha_orange"
+                        android:textStyle="bold"
+                        android:layout_height="wrap_content" />
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:layout_marginRight="7dip"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:padding="5dip"
+                        android:id="@+id/tvTotalAccountvalue"
+                        android:gravity="right"
+                        android:text="₹1098.00"
+                        android:textColor="@color/diksha_headergrey"
+                        android:textStyle="bold"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+</RelativeLayout>
+</android.support.v4.widget.NestedScrollView>

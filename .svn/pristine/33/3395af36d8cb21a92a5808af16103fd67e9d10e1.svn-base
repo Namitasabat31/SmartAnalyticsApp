@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group
+        android:id="@+id/group">
+
+        <item
+            android:id="@+id/nav_item_usagecategory"
+            android:title="@string/usagecategory"/>
+        <item
+            android:id="@+id/nav_item_usagebytypeday"
+            android:title="@string/usagebytypeday"/>
+        <item
+            android:id="@+id/nav_item_costbytypeandday"
+            android:title="@string/costbytypeandday"/>
+        <item
+            android:id="@+id/nav_item_durationcallbytype"
+            android:title="@string/durationcallbytype"/>
+        <item
+            android:id="@+id/nav_item_topnumbercalls"
+            android:title="@string/topnumbercalls"/>
+        <item
+            android:id="@+id/nav_item_expcharges"
+            android:title="@string/expcharges"/>
+        <item
+            android:id="@+id/nav_item_averageusagehours"
+            android:title="@string/averageusagehours"/>
+        <item
+            android:id="@+id/nav_item_lastusagebytype"
+            android:title="@string/lastusagebytype"/>
+
+    </group>
+
+</menu>

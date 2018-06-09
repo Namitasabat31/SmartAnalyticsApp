@@ -1,0 +1,42 @@
+<resources>
+    <string name="app_name">SmartAnalytics</string>
+    <string name="home">Home</string>
+    <string name="bills">Bills</string>
+    <string name="payment">Payments</string>
+    <string name="itemized">Itemized</string>
+    <string name="charts">Charts</string>
+    <string name="acc_no">Account No.</string>
+    <string name="invoice_no">Invoice No.</string>
+    <string name="dummy_name">Smart Analytics</string>
+    <string name="dummy_email">smart.analytics@dikshatech.com</string>
+    <string name="logout">Logout</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="signin">Sign In</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="category">Category</string>
+    <string name="hoursofday">Hours of day</string>
+    <string name="costbytypeandday">Cost by type and day</string>
+    <string name="usagebytypeday">Usage by type and day</string>
+
+    <string name="usagecategory">Usage by category</string>
+    <string name="durationcallbytype">Duration of call by type</string>
+    <string name="topnumbercalls">Top 10 number calls</string>
+    <string name="expcharges">10 most expensive charges</string>
+    <string name="averageusagehours">Average usage by hours</string>
+    <string name="lastusagebytype">Last 6 month usage by type with amount</string>
+
+    <string name="acc_Summary">Account Summary</string>
+    <string name="service_summary">Service Summary</string>
+    <string name="bill_history">Bill History</string>
+
+    <string name="userid_error">Enter valid user name</string>
+    <string name="password_Error">Enter valid password</string>
+
+    <string name="loginerror">Login error!</string>
+    <string name="invalid_cred">Invalid Credentials.</string>
+    <string name="no_data_found">No data found!</string>
+    <string name="cust_management">Customer Management</string>
+</resources>

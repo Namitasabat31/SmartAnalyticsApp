@@ -1,0 +1,351 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:padding="5dip"
+    android:layout_height="match_parent">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:padding="10dip"
+    android:layout_height="match_parent"
+    tools:context="smartanalytics.diksha.com.smartanalytics.fragment.PaymentFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Pay your bill"
+        android:textStyle="bold"
+        android:textColor="@color/diksha_black"
+        android:textSize="18sp"
+        android:padding="3dip"
+        android:id="@+id/textView" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/pay_by_cards" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="5dip">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:gravity="center_vertical"
+            android:textColor="@color/diksha_black"
+            android:textSize="12sp"
+            android:layout_alignBottom="@+id/editTextCardno"
+            android:layout_alignParentTop="true"
+            android:text="Card Number:" />
+
+        <EditText
+            android:id="@+id/editTextCardno"
+            android:layout_width="match_parent"
+            android:layout_height="30dip"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/textView2"
+            android:layout_toRightOf="@+id/textView2"
+            android:textColor="@color/diksha_black"
+            android:textSize="12sp"
+            android:maxLength="16"
+            android:layout_marginLeft="5dip"
+            android:background="@drawable/edt_white_bg"
+            android:ems="10"
+            android:inputType="number" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/diksha_black"
+            android:textSize="12sp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignRight="@+id/textView2"
+            android:layout_below="@+id/editTextCardno"
+            android:gravity="center_vertical"
+            android:layout_alignBottom="@+id/linearexpirydate"
+            android:text="Expiry:"
+            android:layout_marginTop="7dip"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:id="@+id/linearexpirydate"
+            android:layout_toEndOf="@+id/textView3"
+            android:layout_marginTop="7dip"
+            android:layout_below="@+id/editTextCardno"
+            android:layout_toRightOf="@+id/textView3"
+            android:weightSum="2"
+            android:layout_height="wrap_content">
+
+            <Spinner
+                android:id="@+id/spinner_expirymonth"
+                android:layout_width="fill_parent"
+                android:layout_height="35dip"
+                android:layout_weight="1"
+                android:background="@android:drawable/btn_dropdown"
+                android:paddingLeft="15dp"
+                android:spinnerMode="dropdown"></Spinner>
+            <Spinner
+                android:id="@+id/spinner_expiryyear"
+                android:layout_width="fill_parent"
+                android:layout_height="35dip"
+                android:layout_weight="1"
+                android:layout_marginLeft="2dip"
+                android:background="@android:drawable/btn_dropdown"
+                android:paddingLeft="15dp"
+                android:spinnerMode="dropdown"></Spinner>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="7dip"
+            android:layout_alignRight="@+id/textView2"
+            android:layout_alignBottom="@+id/editTextCvv"
+            android:gravity="center_vertical"
+            android:textColor="@color/diksha_black"
+            android:textSize="12sp"
+            android:layout_below="@+id/linearexpirydate"
+            android:text="CVV:" />
+
+        <EditText
+            android:id="@+id/editTextCvv"
+            android:layout_width="80dp"
+            android:layout_height="30dip"
+            android:layout_alignLeft="@+id/editTextCardno"
+            android:layout_alignStart="@+id/editTextCardno"
+            android:layout_below="@+id/linearexpirydate"
+            android:background="@drawable/edt_white_bg"
+            android:layout_marginTop="7dip"
+            android:maxLength="3"
+            android:inputType="number"
+            android:textColor="@color/diksha_black"
+            android:textSize="12sp" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="150dip"
+            android:layout_height="40dip"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/editTextCvv"
+            android:layout_marginTop="14dp"
+            android:background="#C6DB08"
+            android:text="Pay now"
+            android:textAllCaps="false"
+            android:textColor="@color/diksha_white"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="10dp"
+            android:layout_margin="10dp"
+            android:layout_below="@+id/button"
+            android:background="@drawable/dotted_line" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Request Payment Reminder"
+            android:layout_below="@+id/textView5"
+            android:textColor="@color/diksha_black"
+            android:textSize="18sp"
+            android:padding="7dp"
+            android:textStyle="bold"
+            android:id="@+id/textViewrem" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textViewrem"
+            android:gravity="center_vertical"
+            android:text="Send me a Remeinder:"
+            android:layout_alignBottom="@+id/spinnerReminder"
+            android:textColor="@color/diksha_black"
+            android:textSize="12sp" />
+
+        <Spinner
+            android:id="@+id/spinnerReminder"
+            android:layout_width="match_parent"
+            android:layout_height="35dip"
+            android:layout_marginLeft="5dip"
+            android:layout_below="@+id/textViewrem"
+            android:layout_toEndOf="@+id/textView6"
+            android:background="@android:drawable/btn_dropdown"
+            android:layout_toRightOf="@+id/textView6" />
+
+        <TextView
+            android:id="@+id/textView7"
+            android:textColor="@color/diksha_black"
+            android:textSize="12sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/textView8"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/spinnerReminder"
+            android:layout_marginTop="7dip"
+            android:gravity="center_vertical"
+            android:text="Email:" />
+
+        <CheckBox
+            android:id="@+id/checkBoxemail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/textView7"
+            android:layout_below="@+id/spinnerReminder"
+            android:layout_toEndOf="@+id/textView7"
+            android:layout_toRightOf="@+id/textView7"
+             />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/checkBoxsms"
+            android:layout_below="@+id/spinnerReminder"
+            android:layout_marginTop="7dip"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="10dip"
+            android:textColor="@color/diksha_black"
+            android:textSize="12sp"
+            android:layout_toEndOf="@+id/checkBoxemail"
+            android:layout_toRightOf="@+id/checkBoxemail"
+            android:text="Text(SMS):" />
+
+        <CheckBox
+            android:id="@+id/checkBoxsms"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/spinnerReminder"
+            android:layout_marginTop="7dip"
+            android:layout_toEndOf="@+id/textView8"
+            android:layout_toRightOf="@+id/textView8"
+             />
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="7dip"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/textView7"
+            android:layout_alignBottom="@+id/editTextEmailid"
+            android:gravity="center_vertical"
+            android:textColor="@color/diksha_black"
+            android:textSize="12sp"
+            android:text="Email id:" />
+
+        <EditText
+            android:id="@+id/editTextEmailid"
+            android:layout_width="match_parent"
+            android:layout_height="30dip"
+            android:layout_marginTop="7dip"
+            android:layout_marginLeft="5dip"
+            android:layout_below="@+id/checkBoxemail"
+            android:layout_toEndOf="@+id/textView10"
+            android:layout_toRightOf="@+id/textView10"
+            android:background="@drawable/edt_white_bg"
+            android:textColor="@color/diksha_black"
+            android:textSize="12sp"
+            android:inputType="textEmailAddress" />
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="7dip"
+            android:gravity="center_vertical"
+            android:layout_alignBottom="@+id/editTextcountrycode"
+            android:layout_below="@+id/textView10"
+            android:textColor="@color/diksha_black"
+            android:textSize="12sp"
+            android:text="Country Code:" />
+
+        <EditText
+            android:id="@+id/editTextcountrycode"
+            android:layout_width="60dip"
+            android:layout_height="30dip"
+            android:layout_below="@+id/editTextEmailid"
+            android:layout_toEndOf="@+id/textView11"
+            android:textColor="@color/diksha_black"
+            android:textSize="12sp"
+            android:layout_marginTop="7dip"
+            android:layout_marginLeft="5dip"
+            android:layout_toRightOf="@+id/textView11"
+            android:background="@drawable/edt_white_bg"
+            android:inputType="textPersonName"
+             />
+
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/editTextcountrycode"
+            android:layout_toEndOf="@+id/editTextcountrycode"
+            android:layout_marginLeft="8dip"
+            android:layout_toRightOf="@+id/editTextcountrycode"
+            android:textColor="@color/diksha_black"
+            android:textSize="12sp"
+            android:text="Mobile Number:" />
+
+        <EditText
+            android:id="@+id/editTextMobileno"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_below="@+id/editTextEmailid"
+            android:textColor="@color/diksha_black"
+            android:textSize="12sp"
+            android:layout_toEndOf="@+id/textView12"
+            android:layout_toRightOf="@+id/textView12"
+            android:layout_marginTop="7dip"
+            android:maxLength="10"
+            android:background="@drawable/edt_white_bg"
+            android:inputType="phone" />
+
+        <Button
+            android:id="@+id/buttonSetReminder"
+            android:layout_width="wrap_content"
+            android:layout_height="45dip"
+            android:layout_alignParentEnd="true"
+            android:background="#C6DB08"
+            android:textSize="16sp"
+            android:padding="5dp"
+            android:textAllCaps="false"
+            android:layout_marginTop="15dip"
+            android:textColor="@color/diksha_white"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/editTextMobileno"
+            android:text="Submit Reminder Request" />
+
+
+    </RelativeLayout>
+
+
+
+</LinearLayout>
+</ScrollView>

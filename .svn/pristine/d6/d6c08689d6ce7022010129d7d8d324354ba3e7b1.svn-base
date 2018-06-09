@@ -1,0 +1,165 @@
+package smartanalytics.diksha.com.smartanalytics.fragment;
+
+
+import android.animation.ObjectAnimator;
+import android.animation.PropertyValuesHolder;
+import android.animation.ValueAnimator;
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+
+import com.squareup.otto.Subscribe;
+
+import smartanalytics.diksha.com.smartanalytics.R;
+import smartanalytics.diksha.com.smartanalytics.commonutils.LogUtils;
+import smartanalytics.diksha.com.smartanalytics.network.OttoEvent;
+import smartanalytics.diksha.com.smartanalytics.network.Response;
+
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public abstract class BaseFragment extends Fragment {
+
+
+    public BaseFragment() {
+        // Required empty public constructor
+    }
+
+
+    public String TAG = BaseFragment.class.getSimpleName();
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        return super.onCreateView(inflater, container, savedInstanceState);
+    }
+
+    ProgressDialog mDotsProgressDialog;
+
+    public void showDotsProgress(Context context) {
+        LogUtils.logD(TAG, "showing progress"+context.getPackageName());
+        mDotsProgressDialog = new ProgressDialog(
+                context);
+        mDotsProgressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+
+        mDotsProgressDialog.setCancelable(false);
+        mDotsProgressDialog.show();
+        mDotsProgressDialog.setContentView(R.layout.progressbar);
+    }
+
+    public void cancelDotsProgress() {
+        try {
+            LogUtils.logD(TAG, "cancelling mDotsProgressDialog");
+            if (null != mDotsProgressDialog && mDotsProgressDialog.isShowing()) {
+                LogUtils.logD(TAG, "dismissing...");
+                // progressDialog.dismiss();
+                mDotsProgressDialog.cancel();
+            }
+        }catch (Exception ignore){}
+    }
+
+    private TextView hangoutTvOne;
+    private TextView hangoutTvTwo;
+    private TextView hangoutTvThree;
+    private ObjectAnimator waveOneAnimator;
+    private ObjectAnimator waveTwoAnimator;
+    private ObjectAnimator waveThreeAnimator;
+
+    public void waveAnimation() {
+        PropertyValuesHolder tvOne_Y = PropertyValuesHolder.ofFloat(
+                hangoutTvOne.TRANSLATION_Y, -40.0f);
+        PropertyValuesHolder tvOne_X = PropertyValuesHolder.ofFloat(
+                hangoutTvOne.TRANSLATION_X, 0);
+        waveOneAnimator = ObjectAnimator.ofPropertyValuesHolder(hangoutTvOne,
+                tvOne_X, tvOne_Y);
+        waveOneAnimator.setRepeatCount(-1);
+        waveOneAnimator.setRepeatMode(ValueAnimator.REVERSE);
+        waveOneAnimator.setDuration(300);
+        waveOneAnimator.start();
+
+        PropertyValuesHolder tvTwo_Y = PropertyValuesHolder.ofFloat(
+                hangoutTvTwo.TRANSLATION_Y, -40.0f);
+        PropertyValuesHolder tvTwo_X = PropertyValuesHolder.ofFloat(
+                hangoutTvTwo.TRANSLATION_X, 0);
+        waveTwoAnimator = ObjectAnimator.ofPropertyValuesHolder(hangoutTvTwo,
+                tvTwo_X, tvTwo_Y);
+        waveTwoAnimator.setRepeatCount(-1);
+        waveTwoAnimator.setRepeatMode(ValueAnimator.REVERSE);
+        waveTwoAnimator.setDuration(300);
+        waveTwoAnimator.setStartDelay(100);
+        waveTwoAnimator.start();
+
+        PropertyValuesHolder tvThree_Y = PropertyValuesHolder.ofFloat(
+                hangoutTvThree.TRANSLATION_Y, -40.0f);
+        PropertyValuesHolder tvThree_X = PropertyValuesHolder.ofFloat(
+                hangoutTvThree.TRANSLATION_X, 0);
+        waveThreeAnimator = ObjectAnimator.ofPropertyValuesHolder(
+                hangoutTvThree, tvThree_X, tvThree_Y);
+        waveThreeAnimator.setRepeatCount(-1);
+        waveThreeAnimator.setRepeatMode(ValueAnimator.REVERSE);
+        waveThreeAnimator.setDuration(300);
+        waveThreeAnimator.setStartDelay(200);
+        waveThreeAnimator.start();
+    }
+
+
+    public Response mResponse;
+
+    @Subscribe
+    public void onOttoEventReceived(OttoEvent event) throws Exception {
+        try {
+            LogUtils.logD(TAG,event.toString());
+            cancelDotsProgress();
+            //Demo response = event.getResponse();
+           // onResponse(response, event.getId());
+
+            /*CommonUtility.displayToast(this.getActivity(), event.getId() + "onOttoEventReceived -- > base Frag  event -->  " + event);
+
+            Response response = event.getResponse();
+            CommonUtility.displayToast(this.getActivity(), "onOttoEventReceived -- > base Frag  response -->  " + response);
+            if (null != response) {
+                String errorCode = response.getCode();
+                CommonUtility.displayToast(this.getActivity(), "onOttoEventReceived -- > base Frag  errorCode -->  " + errorCode);
+                if (!TextUtils.isEmpty(errorCode)) {
+                    if (errorCode.equalsIgnoreCase(StatusCode.ERROR_CODE_SCS)) {
+                        try {
+                            mResponse = response;
+                            //Log.e("body "+response.getBody(),"event "+event.getId());
+                            onResponse(response.getBody(), event.getId());
+                        }catch (Exception e){
+                            // e.printStackTrace();
+                        }
+                    } else {
+                        CommonUtility.createAlert(this.getActivity(), getString(R.string.error), response.getDescription(), Boolean.FALSE, "");
+                        onErrorResponse(errorCode, response.getDescription());
+                    }
+                } else if (!TextUtils.isEmpty(event.getException())) {
+                    onErrorResponse("Error code is empty", "Error code is empty");
+                } else {
+                    CommonUtility.proceedWithResponseFailure(this.getActivity(), response.getStatus());
+                    onErrorResponse(CommonUtility.getText(response.getStatus().getStatus()), CommonUtility.getText(response.getStatus().getMessage()));
+                }
+            } else if (!TextUtils.isEmpty(event.getException())) {
+                CommonUtility.createAlert(this.getActivity(), getString(R.string.error), event.getException(), Boolean.FALSE, "");
+                onErrorResponse(getString(R.string.error), event.getException());
+            } else {
+                CommonUtility.proceedWithResponseFailure(this.getActivity(), response.getStatus());
+                onErrorResponse(CommonUtility.getText(response.getStatus().getStatus()), CommonUtility.getText(response.getStatus().getMessage()));
+            }*/
+
+        }catch (Exception e){
+            // e.printStackTrace();
+        }
+    }
+
+    protected abstract <T> void onResponse(T t, int id) throws Exception;
+    protected void onErrorResponse(String errorCode, String errorMsg) throws Exception{
+
+    }
+
+}

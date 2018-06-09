@@ -1,0 +1,457 @@
+package smartanalytics.diksha.com.smartanalytics.fragment;
+
+
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
+import android.widget.Spinner;
+import android.widget.TextView;
+
+import org.achartengine.ChartFactory;
+import org.achartengine.GraphicalView;
+import org.achartengine.chart.BarChart;
+import org.achartengine.model.XYMultipleSeriesDataset;
+import org.achartengine.model.XYSeries;
+import org.achartengine.renderer.XYMultipleSeriesRenderer;
+import org.achartengine.renderer.XYSeriesRenderer;
+
+import smartanalytics.diksha.com.smartanalytics.R;
+import smartanalytics.diksha.com.smartanalytics.commonutils.CommonUtility;
+import smartanalytics.diksha.com.smartanalytics.core.SmartAppication;
+import smartanalytics.diksha.com.smartanalytics.data.TopManagementData;
+import smartanalytics.diksha.com.smartanalytics.database.DatabaseHelper;
+
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public class CustManagementFragment extends BaseFragment {
+    private LinearLayout layoutChart;
+    private GraphicalView mChartView;
+    private XYMultipleSeriesRenderer multiRenderer;
+    private XYSeriesRenderer seriesRenderer;
+    private XYMultipleSeriesDataset dataset;
+    private XYSeries xySeries;
+    private int[] yaxisdata;
+    private String[] xaxisdata;
+    private TextView tvChartTitle;
+    DatabaseHelper databaseHelper;
+private Spinner spinner;
+    public CustManagementFragment() {
+        // Required empty public constructor
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        menu.clear();
+        inflater.inflate(R.menu.cust_mangment_menu, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+    String selectedMonth;
+    String type;
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View v = inflater.inflate(R.layout.fragment_cust_management, container, false);
+        setHasOptionsMenu(true);
+        tvChartTitle = v.findViewById(R.id.tvChartTitle);
+        layoutChart = v.findViewById(R.id.chart);
+        databaseHelper = SmartAppication.getInstance().getmDatabaseHelper();
+        spinner = v.findViewById(R.id.spinner_month);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectedMonth = parent.getItemAtPosition(position).toString();
+                if(type.equalsIgnoreCase("Customer Segment Wise Revenue")){
+                    showCustSegmentWiseRevenueChart(selectedMonth);
+                }else if(type.equalsIgnoreCase("Business unit wise revenue")){
+                    showBusinessUnitwiseRevenue(selectedMonth);
+                }else if(type.equalsIgnoreCase("Top 10 revenue plans")){
+                    top10RevenuePlans(selectedMonth);
+                }else if(type.equalsIgnoreCase("Least 10 revenue plans")){
+                    least10RevenuePlans(selectedMonth);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        tvChartTitle.setText("Customer Segment Wise Revenue");
+        showCustSegmentWiseRevenue();
+       return  v;
+    }
+
+    TopManagementData monthdata,chartdata;
+    private void showCustSegmentWiseRevenue() {
+        type = "Customer Segment Wise Revenue";
+        monthdata = SmartAppication.getInstance().getmDatabaseHelper().showCustSegmentWiseRevenue();
+        String month[] = monthdata.getBillMonth();
+
+        ArrayAdapter adapterLoc = new ArrayAdapter<String>(
+                getActivity(), android.R.layout.simple_spinner_dropdown_item, month);
+        spinner.setAdapter(adapterLoc);
+        selectedMonth = month[0];
+        showCustSegmentWiseRevenueChart(selectedMonth);
+    }
+
+    private void showCustSegmentWiseRevenueChart(String selectedMonth){
+
+        chartdata = SmartAppication.getInstance().getmDatabaseHelper().showCustSegmentWiseRevenueData(selectedMonth);
+        yaxisdata = chartdata.getAmount();
+        xaxisdata = chartdata.getDescription();
+        if(yaxisdata != null && xaxisdata != null) {
+            xySeries = new XYSeries("Customer Segment Wise Revenue");
+            for (int i = 0; i < yaxisdata.length; i++) {
+
+                xySeries.add(i, yaxisdata[i]);
+            }
+            // Creating a dataset to hold each series
+            dataset = new XYMultipleSeriesDataset();
+            // Adding Income Series to the dataset
+            dataset.addSeries(xySeries);
+
+            seriesRenderer = new XYSeriesRenderer();
+            seriesRenderer.setColor(getResources().getColor(R.color.diksha_blue));
+            seriesRenderer.setFillPoints(true);
+            seriesRenderer.setLineWidth(2);
+            seriesRenderer.setDisplayChartValues(true);
+
+            multiRenderer = new XYMultipleSeriesRenderer();
+            multiRenderer.setXAxisMin(-0.5);
+            multiRenderer.setYAxisMin(0);
+           // multiRenderer.setYLabelsAngle(45);
+            multiRenderer.setYLabelsPadding(10);
+            multiRenderer.setXLabelsPadding(10);
+            multiRenderer.setMargins(new int[]{30, 80, 60, 30});
+            multiRenderer.setLabelsTextSize(16);
+            multiRenderer.setAxisTitleTextSize(18);
+            multiRenderer.setLegendTextSize(18);
+            multiRenderer.setXAxisMax(xaxisdata.length);
+            multiRenderer.setXLabels(0);
+            multiRenderer.setBarSpacing(1.5f);
+            multiRenderer.setMarginsColor(getResources().getColor(R.color.diksha_white));
+            multiRenderer.setYLabelsColor(0, Color.BLACK);
+            multiRenderer.setXLabelsColor(Color.BLACK);
+            multiRenderer.setLabelsColor(Color.BLACK);
+            multiRenderer.setAxesColor(Color.BLACK);
+            multiRenderer.setYAxisAlign(Paint.Align.LEFT, 0);
+            multiRenderer.setYLabelsAlign(Paint.Align.RIGHT, 0);
+            //multiRenderer.setXTitle("Dialed Numbers");
+            multiRenderer.setYTitle("Charges");
+            multiRenderer.setZoomButtonsVisible(false);
+            multiRenderer.setPanEnabled(false);
+            for (int i = 0; i < yaxisdata.length; i++) {
+
+                multiRenderer.addXTextLabel(i, xaxisdata[i]);
+            }
+
+            multiRenderer.setPanEnabled(false);
+            multiRenderer.setZoomEnabled(false,false);
+            multiRenderer.addSeriesRenderer(seriesRenderer);
+            mChartView = ChartFactory.getBarChartView(getActivity(), dataset,
+                    multiRenderer, BarChart.Type.DEFAULT);
+            layoutChart.removeAllViews();
+            layoutChart.addView(mChartView);
+            mChartView.repaint();
+        }else{
+            tvChartTitle.setText("");
+            layoutChart.removeAllViews();
+            CommonUtility.displayToast(getActivity(), getResources().getString(R.string.no_data_found));
+        }
+
+
+    }
+
+
+    private void showBusinessUnitwiseRevenue() {
+        type = "Business unit wise revenue";
+        tvChartTitle.setText(type);
+        monthdata = SmartAppication.getInstance().getmDatabaseHelper().showBusinessUnitwiseRevenue();
+        String month[] = monthdata.getBillMonth();
+
+        ArrayAdapter adapterLoc = new ArrayAdapter<String>(
+                getActivity(), android.R.layout.simple_spinner_dropdown_item, month);
+        spinner.setAdapter(adapterLoc);
+        selectedMonth = month[0];
+        showBusinessUnitwiseRevenue(selectedMonth);
+
+    }
+
+    private void showBusinessUnitwiseRevenue(String selectedMonth) {
+        chartdata = SmartAppication.getInstance().getmDatabaseHelper().showBusinessUnitwiseRevenueData(selectedMonth);
+        yaxisdata = chartdata.getAmount();
+        xaxisdata = chartdata.getDescription();
+        if(yaxisdata != null && xaxisdata != null) {
+            xySeries = new XYSeries("Business Unit Wise Revenue");
+            for (int i = 0; i < yaxisdata.length; i++) {
+                xySeries.add(i, yaxisdata[i]);
+            }
+            // Creating a dataset to hold each series
+            dataset = new XYMultipleSeriesDataset();
+            // Adding Income Series to the dataset
+            dataset.addSeries(xySeries);
+
+            seriesRenderer = new XYSeriesRenderer();
+            seriesRenderer.setColor(getResources().getColor(R.color.diksha_blue));
+            seriesRenderer.setFillPoints(true);
+            seriesRenderer.setLineWidth(2);
+            seriesRenderer.setDisplayChartValues(true);
+
+            multiRenderer = new XYMultipleSeriesRenderer();
+            multiRenderer.setXAxisMin(-0.5);
+            multiRenderer.setYAxisMin(0);
+         //   multiRenderer.setYLabelsAngle(45);
+            multiRenderer.setXAxisMax(xaxisdata.length);
+            multiRenderer.setXLabels(0);
+            multiRenderer.setBarSpacing(1.5f);
+            multiRenderer.setMarginsColor(getResources().getColor(R.color.diksha_white));
+            multiRenderer.setYLabelsColor(0, Color.BLACK);
+            multiRenderer.setXLabelsColor(Color.BLACK);
+            multiRenderer.setLabelsColor(Color.BLACK);
+            multiRenderer.setAxesColor(Color.BLACK);
+            multiRenderer.setYAxisAlign(Paint.Align.LEFT, 0);
+            multiRenderer.setYLabelsAlign(Paint.Align.RIGHT, 0);
+            //multiRenderer.setXTitle("Dialed Numbers");
+            multiRenderer.setYTitle("Charges");
+            multiRenderer.setZoomButtonsVisible(false);
+            multiRenderer.setPanEnabled(false);
+            multiRenderer.setZoomEnabled(false,false);
+            multiRenderer.setYLabelsPadding(10);
+            multiRenderer.setXLabelsPadding(10);
+            multiRenderer.setMargins(new int[]{30, 80, 60, 30});
+            multiRenderer.setLabelsTextSize(16);
+            multiRenderer.setAxisTitleTextSize(18);
+            multiRenderer.setLegendTextSize(18);
+            for (int i = 0; i < yaxisdata.length; i++) {
+
+                multiRenderer.addXTextLabel(i, xaxisdata[i]);
+            }
+
+            multiRenderer.addSeriesRenderer(seriesRenderer);
+            mChartView = ChartFactory.getBarChartView(getActivity(), dataset,
+                    multiRenderer, BarChart.Type.DEFAULT);
+            layoutChart.removeAllViews();
+            layoutChart.addView(mChartView);
+            mChartView.repaint();
+        }else{
+            tvChartTitle.setText("");
+            layoutChart.removeAllViews();
+            CommonUtility.displayToast(getActivity(), getResources().getString(R.string.no_data_found));
+        }
+    }
+
+    private void top10RevenuePlans() {
+        type = "Top 10 revenue plans";
+        tvChartTitle.setText(type);
+        monthdata = SmartAppication.getInstance().getmDatabaseHelper().top10RevenuePlans();
+        String month[] = monthdata.getBillMonth();
+
+        ArrayAdapter adapterLoc = new ArrayAdapter<String>(
+                getActivity(), android.R.layout.simple_spinner_dropdown_item, month);
+        spinner.setAdapter(adapterLoc);
+        selectedMonth = month[0];
+        top10RevenuePlans(selectedMonth);
+
+
+    }
+
+    private void top10RevenuePlans(String selectedMonth) {
+        chartdata = SmartAppication.getInstance().getmDatabaseHelper().top10RevenuePlansData(selectedMonth);
+        yaxisdata = chartdata.getAmount();
+        xaxisdata = chartdata.getDescription();
+        if(yaxisdata != null && xaxisdata != null) {
+            xySeries = new XYSeries("Top 10 revenue plans");
+            for (int i = 0; i < yaxisdata.length; i++) {
+                xySeries.add(i, yaxisdata[i]);
+            }
+            // Creating a dataset to hold each series
+            dataset = new XYMultipleSeriesDataset();
+            // Adding Income Series to the dataset
+            dataset.addSeries(xySeries);
+
+            seriesRenderer = new XYSeriesRenderer();
+            seriesRenderer.setColor(getResources().getColor(R.color.diksha_blue));
+            seriesRenderer.setFillPoints(true);
+            seriesRenderer.setLineWidth(2);
+            seriesRenderer.setDisplayChartValues(true);
+
+            multiRenderer = new XYMultipleSeriesRenderer();
+            multiRenderer.setYLabelsPadding(10);
+            multiRenderer.setXLabelsPadding(10);
+            multiRenderer.setMargins(new int[]{30, 80, 90, 30});
+            multiRenderer.setXAxisMin(-0.5);
+            multiRenderer.setYAxisMin(0);
+           // multiRenderer.setYLabelsAngle(45);
+            multiRenderer.setXAxisMax(xaxisdata.length);
+            multiRenderer.setXLabels(0);
+           // multiRenderer.setXLabelsAngle(45);
+            multiRenderer.setBarSpacing(1.5f);
+            multiRenderer.setMarginsColor(getResources().getColor(R.color.diksha_white));
+            multiRenderer.setYLabelsColor(0, Color.BLACK);
+            multiRenderer.setXLabelsColor(Color.BLACK);
+            multiRenderer.setXLabelsAlign(Paint.Align.LEFT);
+            multiRenderer.setLabelsColor(Color.BLACK);
+            multiRenderer.setAxesColor(Color.BLACK);
+            multiRenderer.setYAxisAlign(Paint.Align.LEFT, 0);
+            multiRenderer.setYLabelsAlign(Paint.Align.RIGHT, 0);
+            //multiRenderer.setXTitle("Dialed Numbers");
+            multiRenderer.setYTitle("Charges");
+            multiRenderer.setZoomButtonsVisible(false);
+            multiRenderer.setPanEnabled(false);
+            multiRenderer.setLabelsTextSize(16);
+            multiRenderer.setAxisTitleTextSize(18);
+            multiRenderer.setLegendTextSize(18);
+            for (int i = 0; i < yaxisdata.length; i++) {
+                if(xaxisdata[i].contains(" ")){
+                    xaxisdata[i] = xaxisdata[i].replace(" ","\n");
+                }
+                multiRenderer.addXTextLabel(i, xaxisdata[i]);
+            }
+            multiRenderer.setExternalZoomEnabled(false);
+            multiRenderer.setPanEnabled(false);
+            multiRenderer.setZoomEnabled(false,false);
+            multiRenderer.addSeriesRenderer(seriesRenderer);
+            mChartView = ChartFactory.getBarChartView(getActivity(), dataset,
+                    multiRenderer, BarChart.Type.DEFAULT);
+            layoutChart.removeAllViews();
+            layoutChart.addView(mChartView);
+            mChartView.repaint();
+        }else{
+            tvChartTitle.setText("");
+            layoutChart.removeAllViews();
+            CommonUtility.displayToast(getActivity(), getResources().getString(R.string.no_data_found));
+        }
+
+    }
+
+    private void least10RevenuePlans() {
+        type = "Least 10 revenue plans";
+        tvChartTitle.setText(type);
+        monthdata = SmartAppication.getInstance().getmDatabaseHelper().least10RevenuePlans();
+        String month[] = monthdata.getBillMonth();
+
+        ArrayAdapter adapterLoc = new ArrayAdapter<String>(
+                getActivity(), android.R.layout.simple_spinner_dropdown_item, month);
+        spinner.setAdapter(adapterLoc);
+        selectedMonth = month[0];
+        least10RevenuePlans(selectedMonth);
+    }
+
+    private void least10RevenuePlans(String selectedMonth) {
+        chartdata = SmartAppication.getInstance().getmDatabaseHelper().least10RevenuePlansData(selectedMonth);
+        yaxisdata = chartdata.getAmount();
+        xaxisdata = chartdata.getDescription();
+        if(yaxisdata != null && xaxisdata != null) {
+            xySeries = new XYSeries("Least 10 revenue plans");
+            for (int i = 0; i < yaxisdata.length; i++) {
+                xySeries.add(i, yaxisdata[i]);
+            }
+            // Creating a dataset to hold each series
+            dataset = new XYMultipleSeriesDataset();
+            // Adding Income Series to the dataset
+            dataset.addSeries(xySeries);
+
+            seriesRenderer = new XYSeriesRenderer();
+            seriesRenderer.setColor(getResources().getColor(R.color.diksha_blue));
+            seriesRenderer.setFillPoints(true);
+            seriesRenderer.setLineWidth(2);
+            seriesRenderer.setDisplayChartValues(true);
+
+            multiRenderer.setYLabelsPadding(10);
+            multiRenderer.setXLabelsPadding(10);
+            multiRenderer.setMargins(new int[]{30, 80, 80, 30});
+            multiRenderer = new XYMultipleSeriesRenderer();
+            multiRenderer.setXAxisMin(-0.5);
+            multiRenderer.setYAxisMin(0);
+           // multiRenderer.setYLabelsAngle(45);
+          //  multiRenderer.setXLabelsAngle(45);
+            multiRenderer.setXAxisMax(xaxisdata.length);
+            multiRenderer.setXLabels(0);
+            multiRenderer.setBarSpacing(1.5f);
+            multiRenderer.setMarginsColor(getResources().getColor(R.color.diksha_white));
+            multiRenderer.setYLabelsColor(0, Color.BLACK);
+            multiRenderer.setXLabelsColor(Color.BLACK);
+            multiRenderer.setLabelsColor(Color.BLACK);
+            multiRenderer.setAxesColor(Color.BLACK);
+            multiRenderer.setYAxisAlign(Paint.Align.LEFT, 0);
+            multiRenderer.setYLabelsAlign(Paint.Align.RIGHT, 0);
+            multiRenderer.setXLabelsAlign(Paint.Align.LEFT);
+
+            multiRenderer.setYTitle("Charges");
+            multiRenderer.setLabelsTextSize(16);
+            multiRenderer.setAxisTitleTextSize(18);
+            multiRenderer.setLegendTextSize(18);
+            multiRenderer.setZoomButtonsVisible(false);
+            multiRenderer.setPanEnabled(true,false);
+            multiRenderer.setPanLimits(new double[]{0,xaxisdata.length,0,0});
+            multiRenderer.setZoomInLimitX(10);
+            multiRenderer.setZoomEnabled(true,false);
+            multiRenderer.setXAxisMax(xaxisdata.length);
+            for (int i = 0; i < yaxisdata.length; i++) {
+                if(xaxisdata[i].contains(" ")){
+                    xaxisdata[i] = xaxisdata[i].replace(" ","\n");
+                }
+                multiRenderer.addXTextLabel(i, xaxisdata[i]);
+            }
+            //multiRenderer.setMargins(new int[]{30, 40, 90, 30});
+            multiRenderer.addSeriesRenderer(seriesRenderer);
+            mChartView = ChartFactory.getBarChartView(getActivity(), dataset,
+                    multiRenderer, BarChart.Type.DEFAULT);
+            layoutChart.removeAllViews();
+            layoutChart.addView(mChartView);
+            mChartView.repaint();
+        }else{
+            tvChartTitle.setText("");
+            layoutChart.removeAllViews();
+            CommonUtility.displayToast(getActivity(), getResources().getString(R.string.no_data_found));
+        }
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem menuItem) {
+        switch (menuItem.getItemId()) {
+
+            case R.id.nav_item_revenue:
+                showCustSegmentWiseRevenue();
+                break;
+            case R.id.nav_item_businessunit:
+                showBusinessUnitwiseRevenue();
+                break;
+            case R.id.nav_item_toprevenueplans:
+                top10RevenuePlans();
+                break;
+            case R.id.nav_item_usagebytypedayleastrevenueplans:
+                least10RevenuePlans();
+                break;
+
+        }
+        return super.onOptionsItemSelected(menuItem);
+    }
+
+    @Override
+    protected String getTitle() {
+        return "Customer Management";
+    }
+
+    @Override
+    protected <T> void onResponse(T t, int id) throws Exception {
+
+    }
+
+    public static CustManagementFragment newInstance() {
+        return new CustManagementFragment();
+    }
+}

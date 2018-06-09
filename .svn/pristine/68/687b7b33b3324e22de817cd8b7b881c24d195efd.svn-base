@@ -1,0 +1,262 @@
+package smartanalytics.diksha.com.smartanalytics.adapter;
+
+import android.content.Context;
+import android.support.annotation.NonNull;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import smartanalytics.diksha.com.smartanalytics.R;
+import smartanalytics.diksha.com.smartanalytics.data.CategoryItemizedData;
+import smartanalytics.diksha.com.smartanalytics.data.Constants;
+
+public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
+
+    private static final String TAG = RecyclerViewAdapter.class.getSimpleName();
+    private final Context mContext;
+    // private ArrayList<FollowupSelectedDateTime> followupList;
+
+    private List<?> array;
+    int viewType;
+
+    public static final int CALL_OUT_LIST = 0;
+    public static final int POPULATE_ITEMIZED_CATEGORY = CALL_OUT_LIST + Constants.INCREAMENT;
+    public static final int POPULATE_ITEMIZED_HOURS = POPULATE_ITEMIZED_CATEGORY + Constants.INCREAMENT;
+    public static final int POPULATE_ITEMIZED_COST = POPULATE_ITEMIZED_HOURS + Constants.INCREAMENT;
+    public static final int POPULATE_ITEMIZED_USAGE = POPULATE_ITEMIZED_COST + Constants.INCREAMENT;
+    public static final int POPULATE_VIEW_BILLS = POPULATE_ITEMIZED_USAGE + Constants.INCREAMENT;
+    private OnItemClickListener mItemClickListener;
+
+    public RecyclerViewAdapter(List<?> array, int viewType, Context context) {
+        this.array = new ArrayList<>(array);
+        this.viewType = viewType;
+        this.mContext = context;
+    }
+
+
+    @NonNull
+    @Override
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
+        View v;
+        if (viewType == POPULATE_ITEMIZED_CATEGORY || viewType == POPULATE_ITEMIZED_HOURS
+                || viewType == POPULATE_ITEMIZED_COST || viewType == POPULATE_ITEMIZED_USAGE) {
+            v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.itemized_row_items, viewGroup, false);
+            ItemizedCategoryHolder ush = new ItemizedCategoryHolder(v, viewType);
+            return ush;
+        } else if (viewType == POPULATE_VIEW_BILLS) {
+            v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.view_bill_list_item, viewGroup, false);
+            ViewBillsHolder viewbillsholder = new ViewBillsHolder(v, viewType);
+            return viewbillsholder;
+        } else {
+            return null;
+        }
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        int viewType = holder.getItemViewType();
+        if (viewType == POPULATE_ITEMIZED_CATEGORY || viewType == POPULATE_ITEMIZED_HOURS
+                || viewType == POPULATE_ITEMIZED_COST || viewType == POPULATE_ITEMIZED_USAGE) {
+            bindViewItemizedHolder((ItemizedCategoryHolder) holder, position, holder.getItemViewType());
+        } else if (viewType == POPULATE_VIEW_BILLS) {
+            bindViewBillsHolder((ViewBillsHolder) holder, position, holder.getItemViewType());
+        }
+    }
+
+
+    @Override
+    public int getItemCount() {
+        return array.size();
+    }
+
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+        public ViewHolder(View v) {
+            super(v);
+        }
+    }
+
+    private void bindViewBillsHolder(ViewBillsHolder holder, int position, int itemViewType) {
+        Log.v("jhj", "jjjj");
+        // upperHeirarchyList = (ArrayList<UpperHierarchyVO>) array;
+
+
+        //holder.tvUserIcon.setText(R.string.icon_user);
+
+    }
+
+    public class ViewBillsHolder extends ViewHolder implements View.OnClickListener {
+
+        TextView tvBillMonthHeader, tvEmailBill, tvViewBill, tvCustIdNo, tvBillNo, tvBillDate, tvmonthlyCharges,
+                tvAdjustments, tvpayment, tvDuedate;
+        int viewType;
+
+        public ViewBillsHolder(View itemView, int viewType) {
+            super(itemView);
+            this.viewType = viewType;
+            tvBillMonthHeader = (TextView) itemView.findViewById(R.id.tvBillMonthHeader);
+            tvEmailBill = (TextView) itemView.findViewById(R.id.tvEmailBill);
+            tvViewBill = (TextView) itemView.findViewById(R.id.tvViewBill);
+            tvCustIdNo = (TextView) itemView.findViewById(R.id.tvCustIdNo);
+            tvBillNo = (TextView) itemView.findViewById(R.id.tvBillNo);
+            tvBillDate = (TextView) itemView.findViewById(R.id.tvBillDate);
+            tvmonthlyCharges = (TextView) itemView.findViewById(R.id.tvmonthlyCharges);
+            tvAdjustments = (TextView) itemView.findViewById(R.id.tvAdjustments);
+            tvpayment = (TextView) itemView.findViewById(R.id.tvpayment);
+            tvDuedate = (TextView) itemView.findViewById(R.id.tvDuedate);
+
+            // itemView.setOnClickListener(this);
+
+
+        }
+
+        @Override
+        public void onClick(View v) {
+            if ((null != mItemClickListener)) {
+                // mItemClickListener.onItemClick(v, upperHeirarchyList.get(getPosition()), viewType);
+            }
+
+        }
+    }
+
+
+    private void bindViewItemizedHolder(ItemizedCategoryHolder holder, int position, int viewType) {
+        Log.v("jhj", "jjjj");
+        ArrayList<CategoryItemizedData> categoryItemizedData = (ArrayList<CategoryItemizedData>) array;
+        if (viewType == POPULATE_ITEMIZED_CATEGORY) {
+
+            holder.tvMobileNoCat.setText(categoryItemizedData.get(position).getMobileNo());
+            holder.tvCatTypeCat.setText(categoryItemizedData.get(position).getCategoryType());
+            holder.tvSubCatTypeCat.setText(categoryItemizedData.get(position).getSubCatType());
+            holder.tvAmountCat.setText(categoryItemizedData.get(position).getAmount());
+        } else if (viewType == POPULATE_ITEMIZED_HOURS) {
+            holder.tvMobileNoHr.setText(categoryItemizedData.get(position).getMobileNo());
+            holder.tvUsageTypeHr.setText(categoryItemizedData.get(position).getUsageType());
+            holder.tvBillMonthHr.setText(categoryItemizedData.get(position).getBillMonth());
+            holder.tvUsaheHours.setText(categoryItemizedData.get(position).getUsageHours());
+            holder.tvAmountHr.setText(categoryItemizedData.get(position).getAmount());
+        } else if (viewType == POPULATE_ITEMIZED_COST) {
+            holder.tvMobileNoCost.setText(categoryItemizedData.get(position).getMobileNo());
+            holder.tvUsageTypeCost.setText(categoryItemizedData.get(position).getUsageType());
+            holder.tvBillMonthCost.setText(categoryItemizedData.get(position).getBillMonth());
+            holder.tvUsageDate.setText(categoryItemizedData.get(position).getUsageDate());
+            holder.tvAmountCost.setText(categoryItemizedData.get(position).getAmount());
+        } else if (viewType == POPULATE_ITEMIZED_USAGE) {
+            holder.tvMobileNoUsage.setText(categoryItemizedData.get(position).getMobileNo());
+            holder.tvUsageTypeUsage.setText(categoryItemizedData.get(position).getUsageType());
+            holder.tvBillMonthUsage.setText(categoryItemizedData.get(position).getBillMonth());
+            holder.tvUsageDateUsage.setText(categoryItemizedData.get(position).getUsageDate());
+            holder.tvAmountUsage.setText(categoryItemizedData.get(position).getAmount());
+        }
+
+    }
+
+    public class ItemizedCategoryHolder extends ViewHolder implements View.OnClickListener {
+
+        TextView tvMobileNoCat, tvCatTypeCat, tvSubCatTypeCat, tvAmountCat;
+        TextView tvMobileNoHr, tvUsageTypeHr, tvBillMonthHr, tvUsaheHours, tvAmountHr;
+        TextView tvMobileNoCost, tvUsageTypeCost, tvBillMonthCost, tvUsageDate, tvAmountCost;
+        TextView tvMobileNoUsage, tvUsageTypeUsage, tvBillMonthUsage, tvUsageDateUsage, tvAmountUsage;
+        LinearLayout linearLayoutCategoryitem, linearLayoutHoursitem, linearLayoutCostitem, linearLayoutUsageitem;
+
+        public ItemizedCategoryHolder(View itemView, int viewType) {
+            super(itemView);
+            linearLayoutCategoryitem = itemView.findViewById(R.id.layoutItemCategory);
+            linearLayoutHoursitem = itemView.findViewById(R.id.layoutItemHoursofday);
+            linearLayoutCostitem = itemView.findViewById(R.id.layoutItemCostbytypeandday);
+            linearLayoutUsageitem = itemView.findViewById(R.id.layoutItemUsagebytypeandday);
+
+            if (viewType == POPULATE_ITEMIZED_CATEGORY) {
+                linearLayoutCategoryitem.setVisibility(View.VISIBLE);
+                linearLayoutHoursitem.setVisibility(View.GONE);
+                linearLayoutCostitem.setVisibility(View.GONE);
+                linearLayoutUsageitem.setVisibility(View.GONE);
+            } else if (viewType == POPULATE_ITEMIZED_HOURS) {
+                linearLayoutCategoryitem.setVisibility(View.GONE);
+                linearLayoutHoursitem.setVisibility(View.VISIBLE);
+                linearLayoutCostitem.setVisibility(View.GONE);
+                linearLayoutUsageitem.setVisibility(View.GONE);
+            } else if (viewType == POPULATE_ITEMIZED_COST) {
+                linearLayoutCategoryitem.setVisibility(View.GONE);
+                linearLayoutHoursitem.setVisibility(View.GONE);
+                linearLayoutCostitem.setVisibility(View.VISIBLE);
+                linearLayoutUsageitem.setVisibility(View.GONE);
+            } else if (viewType == POPULATE_ITEMIZED_USAGE) {
+                linearLayoutCategoryitem.setVisibility(View.GONE);
+                linearLayoutHoursitem.setVisibility(View.GONE);
+                linearLayoutCostitem.setVisibility(View.GONE);
+                linearLayoutUsageitem.setVisibility(View.VISIBLE);
+            }
+
+            tvMobileNoCat = (TextView) itemView.findViewById(R.id.tv_itemized_cat_mobno);
+            tvCatTypeCat = (TextView) itemView.findViewById(R.id.tv_itemized_cat_category);
+            tvSubCatTypeCat = (TextView) itemView.findViewById(R.id.tv_itemized_cat_subcat);
+            tvAmountCat = (TextView) itemView.findViewById(R.id.tv_itemized_cat_amount);
+
+            tvMobileNoHr = (TextView) itemView.findViewById(R.id.tv_itemized_hours_mobno);
+            tvUsageTypeHr = (TextView) itemView.findViewById(R.id.tv_itemized_hours_usage_type);
+            tvBillMonthHr = (TextView) itemView.findViewById(R.id.tv_itemized_hours_bill_month);
+            tvUsaheHours = (TextView) itemView.findViewById(R.id.tv_itemized_hours_usage_hours);
+            tvAmountHr = (TextView) itemView.findViewById(R.id.tv_itemized_hours_amount);
+
+            tvMobileNoCost = (TextView) itemView.findViewById(R.id.tv_itemized_cost_mobno);
+            tvUsageTypeCost = (TextView) itemView.findViewById(R.id.tv_itemized_cost_usage_type);
+            tvBillMonthCost = (TextView) itemView.findViewById(R.id.tv_itemized_cost_bill_month);
+            tvUsageDate = (TextView) itemView.findViewById(R.id.tv_itemized_cost_usage_date);
+            tvAmountCost = (TextView) itemView.findViewById(R.id.tv_itemized_cost_amount);
+
+            tvMobileNoUsage = (TextView) itemView.findViewById(R.id.tv_itemized_usage_mobno);
+            tvUsageTypeUsage = (TextView) itemView.findViewById(R.id.tv_itemized_usage_usagetype);
+            tvBillMonthUsage = (TextView) itemView.findViewById(R.id.tv_itemized_usage_billmonth);
+            tvUsageDateUsage = (TextView) itemView.findViewById(R.id.tv_itemized_usage_usagedate);
+            tvAmountUsage = (TextView) itemView.findViewById(R.id.tv_itemized_usage_amount);
+
+        }
+
+        @Override
+        public void onClick(View v) {
+            if ((null != mItemClickListener)) {
+                // mItemClickListener.onItemClick(v, upperHeirarchyList.get(getPosition()), viewType);
+            }
+
+        }
+    }
+
+
+    //user score...dg ranking
+
+    public RecyclerViewAdapter(Context con, int viewType) {
+        this.mContext = con;
+        this.viewType = viewType;
+    }
+
+    public void setData(List<?> data) {
+        if (array != data) {
+            array = data;
+            notifyDataSetChanged();
+        }
+    }
+
+    public interface OnItemClickListener<E> {
+        public void onItemClick(View view, E position, int viewType);
+
+    }
+
+    public void setOnItemClickListener(final OnItemClickListener itemClickListener) {
+        this.mItemClickListener = itemClickListener;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return viewType;
+    }
+
+}

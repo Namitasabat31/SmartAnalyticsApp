@@ -1,0 +1,115 @@
+package smartanalytics.diksha.com.smartanalytics.network;
+
+import android.content.Context;
+
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.VolleyError;
+
+import org.json.JSONObject;
+
+import java.util.Map;
+import java.util.concurrent.Callable;
+
+import smartanalytics.diksha.com.smartanalytics.commonutils.BusProvider;
+import smartanalytics.diksha.com.smartanalytics.commonutils.LogUtils;
+import smartanalytics.diksha.com.smartanalytics.data.Constants;
+
+import com.google.gson.GsonBuilder;
+
+public class StringVollyRequest<T> implements Callable<Void>  {
+
+    private static final String TAG = StringVollyRequest.class.getSimpleName();
+    public static final int ID_GET_BILL_DETAILS = Constants.INCREAMENT;
+    public static final int ID_LOGIN = ID_GET_BILL_DETAILS + Constants.INCREAMENT;
+    public static final int ID_LOGOUT = ID_LOGIN + Constants.INCREAMENT;
+    private final int mRequestType;
+    private String mRequestUrl;
+    public static int mRequestId;
+    Map<String, String> mParams;
+    private Context _context;
+
+    public StringVollyRequest(Context context,String requestUrl, int reqId) {
+        this.mRequestUrl = requestUrl;
+        this.mRequestId = reqId;
+        _context = context;
+        this.mRequestType = -1;
+    }
+
+    public StringVollyRequest(String requestUrl, int requestId, Map<String, String> params) {
+        this.mRequestUrl = requestUrl;
+        this.mRequestId = requestId;
+        this.mParams = params;
+        this.mRequestType = -1;
+        LogUtils.logD(TAG, requestUrl);
+    }
+
+    private boolean isRequestIdExists(int mRequestId) {
+        boolean isExist = Boolean.FALSE;
+
+        if (mRequestId == ID_GET_BILL_DETAILS || mRequestId == ID_LOGIN){
+
+            isExist = Boolean.TRUE;
+        }
+        return isExist;
+    }
+
+    private BaseVolleyResponseListener<JSONObject> mBaseVolleyResponseListener = new BaseVolleyResponseListener<JSONObject>(){
+        @Override
+        public void onResponse(JSONObject response) {
+            LogUtils.logD(TAG, response.toString());
+
+            boolean bool = Boolean.FALSE;
+            try {
+                if (isRequestIdExists(mRequestId)) {
+                    OttoEvent ottoEvent = new OttoEvent();
+                    ottoEvent.setId(mRequestId);
+                    GsonBuilder gsonBuilder = new GsonBuilder();
+                    //Demo data = gsonBuilder.create().fromJson(response.toString(), Demo.class);
+                  // ottoEvent.setResponse(data);
+                    BusProvider.getInstance().post(ottoEvent);
+                    bool = Boolean.TRUE;
+                }
+            } catch (Exception e) {
+                bool = Boolean.TRUE;
+            }
+            if (bool)
+                return;
+
+        }
+
+        @Override
+        public void onErrorResponse(VolleyError error) {
+            LogUtils.logD(TAG, error.getMessage());
+
+            boolean bool = Boolean.FALSE;
+            if (isRequestIdExists(mRequestId)) {
+                String errorType = VolleyErrorHelper.getMessage(error);
+                OttoEvent ottoEvent = new OttoEvent();
+                ottoEvent.setId(mRequestId);
+                ottoEvent.setException(errorType);
+                BusProvider.getInstance().post(ottoEvent);
+                bool = Boolean.TRUE;
+            }
+            if (bool)
+                return;
+        }
+    };
+
+    @Override
+    public Void call() throws Exception {
+
+        LogUtils.logD(TAG, "call");
+        LogUtils.logD(TAG, mRequestUrl);
+        SmartRequest stringRequest = new SmartRequest(Request.Method.POST,
+                mRequestUrl, null, mBaseVolleyResponseListener, mBaseVolleyResponseListener);
+
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(
+                50000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        VolleySingleton.getInstance().getRequestQueue().add(stringRequest);
+        LogUtils.logD(TAG, "call end");
+        return null;
+    }
+}

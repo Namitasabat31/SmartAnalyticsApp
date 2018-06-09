@@ -1,0 +1,404 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="smartanalytics.diksha.com.smartanalytics.fragment.ItemizedFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:padding="4dip"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:textColor="@color/diksha_black"
+        android:text="Account No.:" />
+
+    <TextView
+        android:id="@+id/tvAccountNo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/text"
+        android:padding="4dip"
+        android:textSize="14sp"
+        android:textColor="@color/diksha_black"
+        android:layout_toRightOf="@+id/text"
+        android:text="1234567890" />
+
+
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/text"
+        android:layout_below="@+id/text"
+        android:padding="4dip"
+        android:textStyle="bold"
+        android:textSize="14sp"
+        android:textColor="@color/diksha_black"
+        android:text="Invoice No.:" />
+
+    <TextView
+        android:id="@+id/tvInvoiceNo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/textView13"
+        android:padding="4dip"
+        android:layout_below="@+id/tvAccountNo"
+        android:layout_toRightOf="@+id/text"
+        android:textSize="14sp"
+        android:textColor="@color/diksha_black"
+        android:text="1234567890" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_below="@+id/textView13"
+        android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="5dip"
+        android:background="@drawable/total_border"
+        android:orientation="horizontal"
+        android:visibility="gone"
+        android:id="@+id/layoutHeaderCategory">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="Mobile Number"
+            android:textColor="@color/diksha_black"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textSize="12sp"
+            android:letterSpacing="0.01"
+            android:textStyle="bold"
+            />
+        <View
+            android:layout_width="0.2dp"
+            android:layout_height="match_parent"
+            android:background="@color/diksha_headergrey"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="Category Type"
+            android:textColor="@color/diksha_black"
+            android:layout_weight="0.7"
+            android:layout_gravity="center"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textSize="12sp"
+            />
+        <View
+            android:layout_width="0.2dp"
+            android:layout_height="match_parent"
+            android:background="@color/diksha_headergrey"/>
+
+        <TextView
+            android:id="@+id/tvFirstMonthHeader"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="Sub Category Type"
+            android:textColor="@color/diksha_black"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textSize="12sp"
+            />
+        <View
+            android:layout_width="0.2dp"
+            android:layout_height="match_parent"
+            android:background="@color/diksha_headergrey"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="Amount"
+            android:textColor="@color/diksha_black"
+            android:layout_weight="0.7"
+            android:layout_gravity="center"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textSize="12sp"
+            />
+
+    </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="5dip"
+            android:visibility="gone"
+            android:background="@drawable/total_border"
+            android:orientation="horizontal"
+            android:id="@+id/layoutHeaderHoursofday">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="Mobile Number"
+                android:textColor="@color/diksha_black"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textSize="12sp"
+                android:letterSpacing="0.01"
+                android:textStyle="bold"
+                />
+            <View
+                android:layout_width="0.2dp"
+                android:layout_height="match_parent"
+                android:background="@color/diksha_headergrey"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="Usage Type"
+                android:textColor="@color/diksha_black"
+                android:layout_weight="0.7"
+                android:layout_gravity="center"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textSize="12sp"
+                />
+            <View
+                android:layout_width="0.2dp"
+                android:layout_height="match_parent"
+                android:background="@color/diksha_headergrey"/>
+
+            <TextView
+                android:padding="2dp"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="Bill Month"
+                android:textColor="@color/diksha_black"
+                android:layout_weight="0.7"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textSize="12sp"
+                />
+            <View
+                android:layout_width="0.2dp"
+                android:layout_height="match_parent"
+                android:background="@color/diksha_headergrey"/>
+            <TextView
+
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="Usage Hours"
+                android:textColor="@color/diksha_black"
+                android:layout_weight="0.7"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textSize="12sp"
+                />
+            <View
+                android:layout_width="0.2dp"
+                android:layout_height="match_parent"
+                android:background="@color/diksha_headergrey"/>
+
+            <TextView
+                android:id="@+id/tvSecondMonthHeader"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="Amount"
+                android:textColor="@color/diksha_black"
+                android:layout_weight="0.7"
+                android:layout_gravity="center"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textSize="12sp"
+                />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="5dip"
+            android:visibility="gone"
+            android:background="@drawable/total_border"
+            android:orientation="horizontal"
+            android:id="@+id/layoutHeaderCostbytypeandday">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="Mobile Number"
+                android:textColor="@color/diksha_black"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textSize="12sp"
+                android:letterSpacing="0.01"
+                android:textStyle="bold"
+                />
+            <View
+                android:layout_width="0.2dp"
+                android:layout_height="match_parent"
+                android:background="@color/diksha_headergrey"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="Usage Type"
+                android:textColor="@color/diksha_black"
+                android:layout_weight="0.7"
+                android:layout_gravity="center"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textSize="12sp"
+                />
+            <View
+                android:layout_width="0.2dp"
+                android:layout_height="match_parent"
+                android:background="@color/diksha_headergrey"/>
+
+            <TextView
+                android:padding="2dp"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="Bill Month"
+                android:textColor="@color/diksha_black"
+                android:layout_weight="0.6"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textSize="12sp"
+                />
+            <View
+                android:layout_width="0.2dp"
+                android:layout_height="match_parent"
+                android:background="@color/diksha_headergrey"/>
+            <TextView
+
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="Usage Date"
+                android:textColor="@color/diksha_black"
+                android:layout_weight="0.7"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textSize="12sp"
+                />
+            <View
+                android:layout_width="0.2dp"
+                android:layout_height="match_parent"
+                android:background="@color/diksha_headergrey"/>
+
+            <TextView
+
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="Amount"
+                android:textColor="@color/diksha_black"
+                android:layout_weight="0.7"
+                android:layout_gravity="center"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textSize="12sp"
+                />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="5dip"
+            android:visibility="visible"
+            android:background="@drawable/total_border"
+            android:orientation="horizontal"
+            android:id="@+id/layoutHeaderUsagebytypeandday">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="Mobile Number"
+                android:textColor="@color/diksha_black"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textSize="12sp"
+                android:letterSpacing="0.01"
+                android:textStyle="bold"
+                />
+            <View
+                android:layout_width="0.2dp"
+                android:layout_height="match_parent"
+                android:background="@color/diksha_headergrey"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="Usage Type"
+                android:textColor="@color/diksha_black"
+                android:layout_weight="0.7"
+                android:layout_gravity="center"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textSize="12sp"
+                />
+            <View
+                android:layout_width="0.2dp"
+                android:layout_height="match_parent"
+                android:background="@color/diksha_headergrey"/>
+
+            <TextView
+                android:padding="2dp"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="Bill Month"
+                android:textColor="@color/diksha_black"
+                android:layout_weight="0.6"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textSize="12sp"
+                />
+            <View
+                android:layout_width="0.2dp"
+                android:layout_height="match_parent"
+                android:background="@color/diksha_headergrey"/>
+            <TextView
+
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="Usage Date"
+                android:textColor="@color/diksha_black"
+                android:layout_weight="0.7"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textSize="12sp"
+                />
+            <View
+                android:layout_width="0.2dp"
+                android:layout_height="match_parent"
+                android:background="@color/diksha_headergrey"/>
+
+            <TextView
+
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="Amount"
+                android:textColor="@color/diksha_black"
+                android:layout_weight="0.7"
+                android:layout_gravity="center"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textSize="12sp"
+                />
+
+        </LinearLayout>
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="5"
+        android:id="@+id/recycler_view_itemized"/>
+    </LinearLayout>
+</RelativeLayout>

@@ -1,0 +1,151 @@
+-- Merging decision tree log ---
+manifest
+ADDED from D:\Diksha Projects\Android projects\SmartAnalytics\app\src\main\AndroidManifest.xml:2:1-30:12
+INJECTED from D:\Diksha Projects\Android projects\SmartAnalytics\app\src\main\AndroidManifest.xml:2:1-30:12
+INJECTED from D:\Diksha Projects\Android projects\SmartAnalytics\app\src\main\AndroidManifest.xml:2:1-30:12
+INJECTED from D:\Diksha Projects\Android projects\SmartAnalytics\app\src\main\AndroidManifest.xml:2:1-30:12
+MERGED from [com.android.support:multidex:1.0.2] C:\Users\A1GLJZJ1\.gradle\caches\transforms-1\files-1.1\multidex-1.0.2.aar\f136d9889bd172abae2487ac1b5711fb\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support.constraint:constraint-layout:1.1.0] C:\Users\A1GLJZJ1\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.0.aar\7c5d934539e1caca9b47024a08f0ca2d\AndroidManifest.xml:2:1-11:12
+MERGED from [com.android.support:design:27.1.1] C:\Users\A1GLJZJ1\.gradle\caches\transforms-1\files-1.1\design-27.1.1.aar\8f23005a4e07649830aed6ddc3283f30\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:appcompat-v7:27.1.1] C:\Users\A1GLJZJ1\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.1.1.aar\57fea2729b582bad62124d87574899f1\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-v4:27.1.1] C:\Users\A1GLJZJ1\.gradle\caches\transforms-1\files-1.1\support-v4-27.1.1.aar\8361822cc0fd486437581be3b92c3110\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:cardview-v7:27.1.1] C:\Users\A1GLJZJ1\.gradle\caches\transforms-1\files-1.1\cardview-v7-27.1.1.aar\7816b598084bf345d7d89d9c15585151\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:recyclerview-v7:27.1.1] C:\Users\A1GLJZJ1\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-27.1.1.aar\b3d9b3e8b8d65f9c951a62cc882f7252\AndroidManifest.xml:17:1-22:12
+MERGED from [com.mcxiaoke.volley:library-aar:1.0.0] C:\Users\A1GLJZJ1\.gradle\caches\transforms-1\files-1.1\library-aar-1.0.0.aar\2b07d60dc31edb3ffb5aad110203d454\AndroidManifest.xml:1:70-7:12
+MERGED from [com.android.support:support-fragment:27.1.1] C:\Users\A1GLJZJ1\.gradle\caches\transforms-1\files-1.1\support-fragment-27.1.1.aar\83eaff5630596bbc0e2165c0f64a26b0\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:animated-vector-drawable:27.1.1] C:\Users\A1GLJZJ1\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-27.1.1.aar\09c3cd54ef1c1022dc62425fc169b4b8\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-ui:27.1.1] C:\Users\A1GLJZJ1\.gradle\caches\transforms-1\files-1.1\support-core-ui-27.1.1.aar\3741e24f2a7b947fadf0c0635f62d924\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-utils:27.1.1] C:\Users\A1GLJZJ1\.gradle\caches\transforms-1\files-1.1\support-core-utils-27.1.1.aar\1b5eed83a3af4a76689b53c04f644c50\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-vector-drawable:27.1.1] C:\Users\A1GLJZJ1\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-27.1.1.aar\32827bbfbc6afa0d94876d5913ee708b\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:transition:27.1.1] C:\Users\A1GLJZJ1\.gradle\caches\transforms-1\files-1.1\transition-27.1.1.aar\09681d682842a9a8ed24a1c4d82471d1\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-media-compat:27.1.1] C:\Users\A1GLJZJ1\.gradle\caches\transforms-1\files-1.1\support-media-compat-27.1.1.aar\b81f3064cc996203ffd111af6664e2d3\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-compat:27.1.1] C:\Users\A1GLJZJ1\.gradle\caches\transforms-1\files-1.1\support-compat-27.1.1.aar\c1b5aa992c196256a5bf00ab47e5e582\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:livedata-core:1.1.0] C:\Users\A1GLJZJ1\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.0.aar\516e3e44ece6639f9daf1623a7de85f9\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:viewmodel:1.1.0] C:\Users\A1GLJZJ1\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.0.aar\5f76f0e435528e735628336bd9ee9639\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:runtime:1.1.0] C:\Users\A1GLJZJ1\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\e4a041a894548d7d8e3bfabe818a0868\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.core:runtime:1.1.0] C:\Users\A1GLJZJ1\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\aed103f9be05c0ac718c71177c5359fb\AndroidManifest.xml:17:1-22:12
+INJECTED from D:\Diksha Projects\Android projects\SmartAnalytics\app\src\main\AndroidManifest.xml:2:1-30:12
+INJECTED from D:\Diksha Projects\Android projects\SmartAnalytics\app\src\main\AndroidManifest.xml:2:1-30:12
+INJECTED from D:\Diksha Projects\Android projects\SmartAnalytics\app\src\main\AndroidManifest.xml:2:1-30:12
+	package
+		ADDED from D:\Diksha Projects\Android projects\SmartAnalytics\app\src\main\AndroidManifest.xml:3:5-55
+		INJECTED from D:\Diksha Projects\Android projects\SmartAnalytics\app\src\main\AndroidManifest.xml
+		INJECTED from D:\Diksha Projects\Android projects\SmartAnalytics\app\src\main\AndroidManifest.xml
+	android:versionName
+		INJECTED from D:\Diksha Projects\Android projects\SmartAnalytics\app\src\main\AndroidManifest.xml
+		ADDED from D:\Diksha Projects\Android projects\SmartAnalytics\app\src\main\AndroidManifest.xml:2:1-30:12
+		INJECTED from D:\Diksha Projects\Android projects\SmartAnalytics\app\src\main\AndroidManifest.xml
+	android:versionCode
+		INJECTED from D:\Diksha Projects\Android projects\SmartAnalytics\app\src\main\AndroidManifest.xml
+		ADDED from D:\Diksha Projects\Android projects\SmartAnalytics\app\src\main\AndroidManifest.xml:2:1-30:12
+		INJECTED from D:\Diksha Projects\Android projects\SmartAnalytics\app\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from D:\Diksha Projects\Android projects\SmartAnalytics\app\src\main\AndroidManifest.xml:2:11-69
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from D:\Diksha Projects\Android projects\SmartAnalytics\app\src\main\AndroidManifest.xml:5:5-79
+	android:name
+		ADDED from D:\Diksha Projects\Android projects\SmartAnalytics\app\src\main\AndroidManifest.xml:5:22-76
+uses-permission#android.permission.INTERNET
+ADDED from D:\Diksha Projects\Android projects\SmartAnalytics\app\src\main\AndroidManifest.xml:6:5-67
+	android:name
+		ADDED from D:\Diksha Projects\Android projects\SmartAnalytics\app\src\main\AndroidManifest.xml:6:22-64
+application
+ADDED from D:\Diksha Projects\Android projects\SmartAnalytics\app\src\main\AndroidManifest.xml:8:5-28:19
+MERGED from [com.android.support.constraint:constraint-layout:1.1.0] C:\Users\A1GLJZJ1\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.0.aar\7c5d934539e1caca9b47024a08f0ca2d\AndroidManifest.xml:9:5-20
+MERGED from [com.android.support.constraint:constraint-layout:1.1.0] C:\Users\A1GLJZJ1\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.0.aar\7c5d934539e1caca9b47024a08f0ca2d\AndroidManifest.xml:9:5-20
+MERGED from [com.mcxiaoke.volley:library-aar:1.0.0] C:\Users\A1GLJZJ1\.gradle\caches\transforms-1\files-1.1\library-aar-1.0.0.aar\2b07d60dc31edb3ffb5aad110203d454\AndroidManifest.xml:5:5-19
+MERGED from [com.mcxiaoke.volley:library-aar:1.0.0] C:\Users\A1GLJZJ1\.gradle\caches\transforms-1\files-1.1\library-aar-1.0.0.aar\2b07d60dc31edb3ffb5aad110203d454\AndroidManifest.xml:5:5-19
+	android:supportsRtl
+		ADDED from D:\Diksha Projects\Android projects\SmartAnalytics\app\src\main\AndroidManifest.xml:14:9-35
+	android:label
+		ADDED from D:\Diksha Projects\Android projects\SmartAnalytics\app\src\main\AndroidManifest.xml:12:9-41
+	android:roundIcon
+		ADDED from D:\Diksha Projects\Android projects\SmartAnalytics\app\src\main\AndroidManifest.xml:13:9-43
+	android:icon
+		ADDED from D:\Diksha Projects\Android projects\SmartAnalytics\app\src\main\AndroidManifest.xml:11:9-45
+	android:allowBackup
+		ADDED from D:\Diksha Projects\Android projects\SmartAnalytics\app\src\main\AndroidManifest.xml:10:9-35
+	android:theme
+		ADDED from D:\Diksha Projects\Android projects\SmartAnalytics\app\src\main\AndroidManifest.xml:15:9-40
+	android:name
+		ADDED from D:\Diksha Projects\Android projects\SmartAnalytics\app\src\main\AndroidManifest.xml:9:9-45
+activity#smartanalytics.diksha.com.smartanalytics.MainActivity
+ADDED from D:\Diksha Projects\Android projects\SmartAnalytics\app\src\main\AndroidManifest.xml:16:9-59
+	android:name
+		ADDED from D:\Diksha Projects\Android projects\SmartAnalytics\app\src\main\AndroidManifest.xml:16:19-47
+activity#smartanalytics.diksha.com.smartanalytics.LoginActivity
+ADDED from D:\Diksha Projects\Android projects\SmartAnalytics\app\src\main\AndroidManifest.xml:17:9-19:20
+	android:name
+		ADDED from D:\Diksha Projects\Android projects\SmartAnalytics\app\src\main\AndroidManifest.xml:17:19-48
+activity#org.achartengine.GraphicalActivity
+ADDED from D:\Diksha Projects\Android projects\SmartAnalytics\app\src\main\AndroidManifest.xml:20:9-71
+	android:name
+		ADDED from D:\Diksha Projects\Android projects\SmartAnalytics\app\src\main\AndroidManifest.xml:20:19-68
+activity#smartanalytics.diksha.com.smartanalytics.SplashScreenActivity
+ADDED from D:\Diksha Projects\Android projects\SmartAnalytics\app\src\main\AndroidManifest.xml:21:9-27:20
+	android:name
+		ADDED from D:\Diksha Projects\Android projects\SmartAnalytics\app\src\main\AndroidManifest.xml:21:19-55
+intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
+ADDED from D:\Diksha Projects\Android projects\SmartAnalytics\app\src\main\AndroidManifest.xml:22:13-26:29
+action#android.intent.action.MAIN
+ADDED from D:\Diksha Projects\Android projects\SmartAnalytics\app\src\main\AndroidManifest.xml:23:17-69
+	android:name
+		ADDED from D:\Diksha Projects\Android projects\SmartAnalytics\app\src\main\AndroidManifest.xml:23:25-66
+category#android.intent.category.LAUNCHER
+ADDED from D:\Diksha Projects\Android projects\SmartAnalytics\app\src\main\AndroidManifest.xml:25:17-77
+	android:name
+		ADDED from D:\Diksha Projects\Android projects\SmartAnalytics\app\src\main\AndroidManifest.xml:25:27-74
+uses-sdk
+INJECTED from D:\Diksha Projects\Android projects\SmartAnalytics\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from D:\Diksha Projects\Android projects\SmartAnalytics\app\src\main\AndroidManifest.xml
+INJECTED from D:\Diksha Projects\Android projects\SmartAnalytics\app\src\main\AndroidManifest.xml
+MERGED from [com.android.support:multidex:1.0.2] C:\Users\A1GLJZJ1\.gradle\caches\transforms-1\files-1.1\multidex-1.0.2.aar\f136d9889bd172abae2487ac1b5711fb\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:multidex:1.0.2] C:\Users\A1GLJZJ1\.gradle\caches\transforms-1\files-1.1\multidex-1.0.2.aar\f136d9889bd172abae2487ac1b5711fb\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support.constraint:constraint-layout:1.1.0] C:\Users\A1GLJZJ1\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.0.aar\7c5d934539e1caca9b47024a08f0ca2d\AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support.constraint:constraint-layout:1.1.0] C:\Users\A1GLJZJ1\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.0.aar\7c5d934539e1caca9b47024a08f0ca2d\AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support:design:27.1.1] C:\Users\A1GLJZJ1\.gradle\caches\transforms-1\files-1.1\design-27.1.1.aar\8f23005a4e07649830aed6ddc3283f30\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:design:27.1.1] C:\Users\A1GLJZJ1\.gradle\caches\transforms-1\files-1.1\design-27.1.1.aar\8f23005a4e07649830aed6ddc3283f30\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:appcompat-v7:27.1.1] C:\Users\A1GLJZJ1\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.1.1.aar\57fea2729b582bad62124d87574899f1\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:appcompat-v7:27.1.1] C:\Users\A1GLJZJ1\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.1.1.aar\57fea2729b582bad62124d87574899f1\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-v4:27.1.1] C:\Users\A1GLJZJ1\.gradle\caches\transforms-1\files-1.1\support-v4-27.1.1.aar\8361822cc0fd486437581be3b92c3110\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-v4:27.1.1] C:\Users\A1GLJZJ1\.gradle\caches\transforms-1\files-1.1\support-v4-27.1.1.aar\8361822cc0fd486437581be3b92c3110\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:cardview-v7:27.1.1] C:\Users\A1GLJZJ1\.gradle\caches\transforms-1\files-1.1\cardview-v7-27.1.1.aar\7816b598084bf345d7d89d9c15585151\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:cardview-v7:27.1.1] C:\Users\A1GLJZJ1\.gradle\caches\transforms-1\files-1.1\cardview-v7-27.1.1.aar\7816b598084bf345d7d89d9c15585151\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:recyclerview-v7:27.1.1] C:\Users\A1GLJZJ1\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-27.1.1.aar\b3d9b3e8b8d65f9c951a62cc882f7252\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:recyclerview-v7:27.1.1] C:\Users\A1GLJZJ1\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-27.1.1.aar\b3d9b3e8b8d65f9c951a62cc882f7252\AndroidManifest.xml:20:5-44
+MERGED from [com.mcxiaoke.volley:library-aar:1.0.0] C:\Users\A1GLJZJ1\.gradle\caches\transforms-1\files-1.1\library-aar-1.0.0.aar\2b07d60dc31edb3ffb5aad110203d454\AndroidManifest.xml:3:5-72
+MERGED from [com.mcxiaoke.volley:library-aar:1.0.0] C:\Users\A1GLJZJ1\.gradle\caches\transforms-1\files-1.1\library-aar-1.0.0.aar\2b07d60dc31edb3ffb5aad110203d454\AndroidManifest.xml:3:5-72
+MERGED from [com.android.support:support-fragment:27.1.1] C:\Users\A1GLJZJ1\.gradle\caches\transforms-1\files-1.1\support-fragment-27.1.1.aar\83eaff5630596bbc0e2165c0f64a26b0\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-fragment:27.1.1] C:\Users\A1GLJZJ1\.gradle\caches\transforms-1\files-1.1\support-fragment-27.1.1.aar\83eaff5630596bbc0e2165c0f64a26b0\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:27.1.1] C:\Users\A1GLJZJ1\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-27.1.1.aar\09c3cd54ef1c1022dc62425fc169b4b8\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:27.1.1] C:\Users\A1GLJZJ1\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-27.1.1.aar\09c3cd54ef1c1022dc62425fc169b4b8\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:27.1.1] C:\Users\A1GLJZJ1\.gradle\caches\transforms-1\files-1.1\support-core-ui-27.1.1.aar\3741e24f2a7b947fadf0c0635f62d924\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:27.1.1] C:\Users\A1GLJZJ1\.gradle\caches\transforms-1\files-1.1\support-core-ui-27.1.1.aar\3741e24f2a7b947fadf0c0635f62d924\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:27.1.1] C:\Users\A1GLJZJ1\.gradle\caches\transforms-1\files-1.1\support-core-utils-27.1.1.aar\1b5eed83a3af4a76689b53c04f644c50\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:27.1.1] C:\Users\A1GLJZJ1\.gradle\caches\transforms-1\files-1.1\support-core-utils-27.1.1.aar\1b5eed83a3af4a76689b53c04f644c50\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:27.1.1] C:\Users\A1GLJZJ1\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-27.1.1.aar\32827bbfbc6afa0d94876d5913ee708b\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:27.1.1] C:\Users\A1GLJZJ1\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-27.1.1.aar\32827bbfbc6afa0d94876d5913ee708b\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:transition:27.1.1] C:\Users\A1GLJZJ1\.gradle\caches\transforms-1\files-1.1\transition-27.1.1.aar\09681d682842a9a8ed24a1c4d82471d1\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:transition:27.1.1] C:\Users\A1GLJZJ1\.gradle\caches\transforms-1\files-1.1\transition-27.1.1.aar\09681d682842a9a8ed24a1c4d82471d1\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-media-compat:27.1.1] C:\Users\A1GLJZJ1\.gradle\caches\transforms-1\files-1.1\support-media-compat-27.1.1.aar\b81f3064cc996203ffd111af6664e2d3\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-media-compat:27.1.1] C:\Users\A1GLJZJ1\.gradle\caches\transforms-1\files-1.1\support-media-compat-27.1.1.aar\b81f3064cc996203ffd111af6664e2d3\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:27.1.1] C:\Users\A1GLJZJ1\.gradle\caches\transforms-1\files-1.1\support-compat-27.1.1.aar\c1b5aa992c196256a5bf00ab47e5e582\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:27.1.1] C:\Users\A1GLJZJ1\.gradle\caches\transforms-1\files-1.1\support-compat-27.1.1.aar\c1b5aa992c196256a5bf00ab47e5e582\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata-core:1.1.0] C:\Users\A1GLJZJ1\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.0.aar\516e3e44ece6639f9daf1623a7de85f9\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata-core:1.1.0] C:\Users\A1GLJZJ1\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.0.aar\516e3e44ece6639f9daf1623a7de85f9\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:viewmodel:1.1.0] C:\Users\A1GLJZJ1\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.0.aar\5f76f0e435528e735628336bd9ee9639\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:viewmodel:1.1.0] C:\Users\A1GLJZJ1\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.0.aar\5f76f0e435528e735628336bd9ee9639\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:runtime:1.1.0] C:\Users\A1GLJZJ1\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\e4a041a894548d7d8e3bfabe818a0868\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:runtime:1.1.0] C:\Users\A1GLJZJ1\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\e4a041a894548d7d8e3bfabe818a0868\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.core:runtime:1.1.0] C:\Users\A1GLJZJ1\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\aed103f9be05c0ac718c71177c5359fb\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.core:runtime:1.1.0] C:\Users\A1GLJZJ1\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\aed103f9be05c0ac718c71177c5359fb\AndroidManifest.xml:20:5-44
+INJECTED from D:\Diksha Projects\Android projects\SmartAnalytics\app\src\main\AndroidManifest.xml
+INJECTED from D:\Diksha Projects\Android projects\SmartAnalytics\app\src\main\AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from D:\Diksha Projects\Android projects\SmartAnalytics\app\src\main\AndroidManifest.xml
+		ADDED from D:\Diksha Projects\Android projects\SmartAnalytics\app\src\main\AndroidManifest.xml
+		INJECTED from D:\Diksha Projects\Android projects\SmartAnalytics\app\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from D:\Diksha Projects\Android projects\SmartAnalytics\app\src\main\AndroidManifest.xml
+		ADDED from D:\Diksha Projects\Android projects\SmartAnalytics\app\src\main\AndroidManifest.xml
+		INJECTED from D:\Diksha Projects\Android projects\SmartAnalytics\app\src\main\AndroidManifest.xml

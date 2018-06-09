@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/total_border"
+        android:orientation="horizontal"
+        android:visibility="visible"
+        android:id="@+id/layoutItemCategory">
+        <TextView
+            android:layout_width="0dp"
+            android:id="@+id/tv_itemized_cat_mobno"
+            android:layout_height="match_parent"
+            android:text="9745362789"
+            android:textColor="@color/diksha_black"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textSize="12sp"
+            android:letterSpacing="0.01"
+
+            />
+        <View
+            android:layout_width="0.2dp"
+            android:layout_height="match_parent"
+            android:background="@color/diksha_headergrey"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="Voice"
+            android:id="@+id/tv_itemized_cat_category"
+            android:textColor="@color/diksha_black"
+            android:layout_weight="0.7"
+            android:layout_gravity="center"
+
+            android:gravity="center"
+            android:textSize="12sp"
+            />
+        <View
+            android:layout_width="0.2dp"
+            android:layout_height="match_parent"
+            android:background="@color/diksha_headergrey"/>
+
+        <TextView
+            android:id="@+id/tv_itemized_cat_subcat"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="Local calls"
+            android:textColor="@color/diksha_black"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:gravity="center"
+
+            android:textSize="12sp"
+            />
+        <View
+            android:layout_width="0.2dp"
+            android:layout_height="match_parent"
+            android:background="@color/diksha_headergrey"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="184.00"
+            android:id="@+id/tv_itemized_cat_amount"
+            android:textColor="@color/diksha_black"
+            android:layout_weight="0.7"
+            android:layout_gravity="center"
+
+            android:gravity="center"
+            android:textSize="12sp"
+            />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:visibility="gone"
+        android:background="@drawable/total_border"
+        android:orientation="horizontal"
+        android:id="@+id/layoutItemHoursofday">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="9876543210"
+            android:textColor="@color/diksha_black"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:id="@+id/tv_itemized_hours_mobno"
+            android:gravity="center"
+            android:textSize="12sp"
+            android:letterSpacing="0.01"
+
+            />
+        <View
+            android:layout_width="0.2dp"
+            android:layout_height="match_parent"
+            android:background="@color/diksha_headergrey"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="Voice"
+            android:id="@+id/tv_itemized_hours_usage_type"
+            android:textColor="@color/diksha_black"
+            android:layout_weight="0.7"
+            android:layout_gravity="center"
+
+            android:gravity="center"
+            android:textSize="12sp"
+            />
+        <View
+            android:layout_width="0.2dp"
+            android:layout_height="match_parent"
+            android:background="@color/diksha_headergrey"/>
+
+        <TextView
+            android:padding="2dp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="NOV"
+            android:id="@+id/tv_itemized_hours_bill_month"
+            android:textColor="@color/diksha_black"
+            android:layout_weight="0.7"
+            android:layout_gravity="center"
+            android:gravity="center"
+
+            android:textSize="12sp"
+            />
+        <View
+            android:layout_width="0.2dp"
+            android:layout_height="match_parent"
+            android:background="@color/diksha_headergrey"/>
+        <TextView
+
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="18"
+            android:id="@+id/tv_itemized_hours_usage_hours"
+            android:textColor="@color/diksha_black"
+            android:layout_weight="0.7"
+            android:layout_gravity="center"
+            android:gravity="center"
+
+            android:textSize="12sp"
+            />
+        <View
+            android:layout_width="0.2dp"
+            android:layout_height="match_parent"
+            android:background="@color/diksha_headergrey"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="123.00"
+            android:id="@+id/tv_itemized_hours_amount"
+            android:textColor="@color/diksha_black"
+            android:layout_weight="0.7"
+            android:layout_gravity="center"
+
+            android:gravity="center"
+            android:textSize="12sp"
+            />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:visibility="gone"
+        android:background="@drawable/total_border"
+        android:orientation="horizontal"
+        android:id="@+id/layoutItemCostbytypeandday">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="9876567890"
+            android:id="@+id/tv_itemized_cost_mobno"
+            android:textColor="@color/diksha_black"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textSize="12sp"
+            android:letterSpacing="0.01"
+
+            />
+        <View
+            android:layout_width="0.2dp"
+            android:layout_height="match_parent"
+            android:background="@color/diksha_headergrey"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="Voice"
+            android:textColor="@color/diksha_black"
+            android:id="@+id/tv_itemized_cost_usage_type"
+            android:layout_weight="0.7"
+            android:layout_gravity="center"
+
+            android:gravity="center"
+            android:textSize="12sp"
+            />
+        <View
+            android:layout_width="0.2dp"
+            android:layout_height="match_parent"
+            android:background="@color/diksha_headergrey"/>
+
+        <TextView
+            android:padding="2dp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="NOV"
+            android:textColor="@color/diksha_black"
+            android:id="@+id/tv_itemized_cost_bill_month"
+            android:layout_weight="0.6"
+            android:layout_gravity="center"
+            android:gravity="center"
+
+            android:textSize="12sp"
+            />
+        <View
+            android:layout_width="0.2dp"
+            android:layout_height="match_parent"
+            android:background="@color/diksha_headergrey"/>
+        <TextView
+
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="2017-08-12"
+            android:id="@+id/tv_itemized_cost_usage_date"
+            android:textColor="@color/diksha_black"
+            android:layout_weight="0.7"
+            android:layout_gravity="center"
+            android:gravity="center"
+
+            android:textSize="12sp"
+            />
+        <View
+            android:layout_width="0.2dp"
+            android:layout_height="match_parent"
+            android:background="@color/diksha_headergrey"/>
+
+        <TextView
+
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="123.00"
+            android:id="@+id/tv_itemized_cost_amount"
+            android:textColor="@color/diksha_black"
+            android:layout_weight="0.7"
+            android:layout_gravity="center"
+
+            android:gravity="center"
+            android:textSize="12sp"
+            />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:visibility="gone"
+        android:background="@drawable/total_border"
+        android:orientation="horizontal"
+        android:id="@+id/layoutItemUsagebytypeandday">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="9856787656"
+            android:id="@+id/tv_itemized_usage_mobno"
+            android:textColor="@color/diksha_black"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textSize="12sp"
+            android:letterSpacing="0.01"
+
+            />
+        <View
+            android:layout_width="0.2dp"
+            android:layout_height="match_parent"
+            android:background="@color/diksha_headergrey"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="Voice"
+            android:textColor="@color/diksha_black"
+            android:id="@+id/tv_itemized_usage_usagetype"
+            android:layout_weight="0.7"
+            android:layout_gravity="center"
+
+            android:gravity="center"
+            android:textSize="12sp"
+            />
+        <View
+            android:layout_width="0.2dp"
+            android:layout_height="match_parent"
+            android:background="@color/diksha_headergrey"/>
+
+        <TextView
+            android:padding="2dp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="JAN"
+            android:id="@+id/tv_itemized_usage_billmonth"
+            android:textColor="@color/diksha_black"
+            android:layout_weight="0.6"
+            android:layout_gravity="center"
+            android:gravity="center"
+
+            android:textSize="12sp"
+            />
+        <View
+            android:layout_width="0.2dp"
+            android:layout_height="match_parent"
+            android:background="@color/diksha_headergrey"/>
+        <TextView
+
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="2018-02-3"
+            android:textColor="@color/diksha_black"
+            android:id="@+id/tv_itemized_usage_usagedate"
+            android:layout_weight="0.7"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textSize="12sp"
+            />
+        <View
+            android:layout_width="0.2dp"
+            android:layout_height="match_parent"
+            android:background="@color/diksha_headergrey"/>
+
+        <TextView
+
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="143.00"
+            android:textColor="@color/diksha_black"
+            android:id="@+id/tv_itemized_usage_amount"
+            android:layout_weight="0.7"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textSize="12sp"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>

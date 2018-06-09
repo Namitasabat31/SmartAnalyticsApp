@@ -1,0 +1,418 @@
+package smartanalytics.diksha.com.smartanalytics;
+
+import android.content.Intent;
+import android.content.res.Configuration;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import org.achartengine.ChartFactory;
+import org.achartengine.chart.BarChart;
+import org.achartengine.model.XYMultipleSeriesDataset;
+import org.achartengine.model.XYSeries;
+import org.achartengine.renderer.XYMultipleSeriesRenderer;
+import org.achartengine.renderer.XYSeriesRenderer;
+
+import smartanalytics.diksha.com.smartanalytics.commonutils.CommonUtility;
+import smartanalytics.diksha.com.smartanalytics.core.SmartAppication;
+import smartanalytics.diksha.com.smartanalytics.data.BackButtonSupportFragment;
+import smartanalytics.diksha.com.smartanalytics.data.BillHistoryData;
+import smartanalytics.diksha.com.smartanalytics.data.TopManagementData;
+import smartanalytics.diksha.com.smartanalytics.fragment.AccountSummeryFragment;
+import smartanalytics.diksha.com.smartanalytics.fragment.AddFragmentHandler;
+import smartanalytics.diksha.com.smartanalytics.fragment.BaseFragment;
+import smartanalytics.diksha.com.smartanalytics.fragment.BillHistoryFragment;
+import smartanalytics.diksha.com.smartanalytics.fragment.BillsFragment;
+import smartanalytics.diksha.com.smartanalytics.fragment.ChartFragment;
+import smartanalytics.diksha.com.smartanalytics.fragment.CustHomeFragment;
+import smartanalytics.diksha.com.smartanalytics.fragment.CustManagementFragment;
+import smartanalytics.diksha.com.smartanalytics.fragment.HomeFragment;
+import smartanalytics.diksha.com.smartanalytics.fragment.ItemizedFragment;
+import smartanalytics.diksha.com.smartanalytics.fragment.PaymentFragment;
+import smartanalytics.diksha.com.smartanalytics.fragment.ServiceSummeryFragment;
+
+public class MainActivity extends AppCompatActivity implements HomeFragment.SendMessage {
+    private DrawerLayout drawerLayout;
+    private Toolbar toolbar;
+    public NavigationView navigationView;
+    public ActionBarDrawerToggle drawerToggle;
+    private String userRole;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        userRole = SmartAppication.getInstance().getPreferenceData().getUserRole();
+        fragmentManager = getSupportFragmentManager();
+        fragmentHandler = new AddFragmentHandler(fragmentManager);
+        fragmentManager.addOnBackStackChangedListener(backStackListener);
+        initialize();
+        toolbar.setTitleTextColor(getResources().getColor(android.R.color.black));
+
+        if(userRole != null){
+            navigationView.getMenu().clear(); //clear old inflated items.
+            navigationView.inflateMenu(R.menu.nav_menu_admin);
+            setUpNavigationViewAdmin(navigationView);
+            replaceCustomerHomeFragment();
+        }else{
+            navigationView.getMenu().clear(); //clear old inflated items.
+            navigationView.inflateMenu(R.menu.nav_drawer_menu);
+            setUpNavigationView(navigationView);
+            replaceHomeFragment();
+        }
+        setupDrawerAndToggle();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void setupDrawerAndToggle() {
+        setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+        drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, 0, 0) {
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+                setDrawerIndicatorEnabled(true);
+            }
+
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                super.onDrawerClosed(drawerView);
+            }
+        };
+        drawerLayout.addDrawerListener(drawerToggle);
+        drawerToggle.syncState();
+    }
+
+    private FragmentManager fragmentManager;
+    private AddFragmentHandler fragmentHandler;
+
+    private final View.OnClickListener navigationBackPressListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            fragmentManager.popBackStack();
+        }
+    };
+
+    private final FragmentManager.OnBackStackChangedListener backStackListener = new FragmentManager.OnBackStackChangedListener() {
+        @Override
+        public void onBackStackChanged() {
+            onBackStackChangedEvent();
+        }
+    };
+
+    private void onBackStackChangedEvent() {
+        syncDrawerToggleState();
+    }
+
+    private void syncDrawerToggleState() {
+        ActionBarDrawerToggle drawerToggle = getDrawerToggle();
+        if (drawerToggle == null) {
+            return;
+        }
+        if (fragmentManager.getBackStackEntryCount() > 1) {
+            drawerToggle.setDrawerIndicatorEnabled(false);
+            drawerToggle.setToolbarNavigationClickListener(navigationBackPressListener); //pop backstack
+        } else {
+            drawerToggle.setDrawerIndicatorEnabled(true);
+            drawerToggle.setToolbarNavigationClickListener(drawerToggle.getToolbarNavigationClickListener()); //open nav menu drawer
+        }
+
+
+    }
+
+
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getDrawer().addDrawerListener(new DrawerLayout.DrawerListener() {
+            @Override
+            public void onDrawerSlide(View drawerView, float slideOffset) {
+
+            }
+
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                syncDrawerToggleState();
+            }
+
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                syncDrawerToggleState();
+            }
+
+            @Override
+            public void onDrawerStateChanged(int newState) {
+
+            }
+        });
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (sendBackPressToDrawer()) {
+            //the drawer consumed the backpress
+            return;
+        }
+
+        if (sendBackPressToFragmentOnTop()) {
+
+            // fragment on top consumed the back press
+            return;
+        }
+
+        //let the android system handle the back press, usually by popping the fragment
+        super.onBackPressed();
+
+        //close the activity if back is pressed on the root fragment
+        if (fragmentManager.getBackStackEntryCount() == 0) {
+            finish();
+        }
+    }
+
+    private boolean sendBackPressToDrawer() {
+        DrawerLayout drawer = getDrawer();
+        if (drawer != null && drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+            return true;
+        }
+        return false;
+    }
+
+    private boolean sendBackPressToFragmentOnTop() {
+        BaseFragment fragmentOnTop = fragmentHandler.getCurrentFragment();
+        if (fragmentOnTop == null) {
+            return false;
+        }
+        if (!(fragmentOnTop instanceof BackButtonSupportFragment)) {
+            return false;
+        }
+        return ((BackButtonSupportFragment) fragmentOnTop).onBackPressed();
+    }
+
+    private void replaceHomeFragment() {
+
+        add(HomeFragment.newInstance());
+    }
+
+    private void add(BaseFragment fragment) {
+        fragmentHandler.add(fragment);
+    }
+
+
+    private void initialize() {
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        navigationView = (NavigationView) findViewById(R.id.navigationDrawer);
+        View header=navigationView.getHeaderView(0);
+        TextView name = (TextView)header.findViewById(R.id.tvUserName);
+        TextView email = (TextView)header.findViewById(R.id.tvUserEmail);
+        name.setText(SmartAppication.getInstance().getPreferenceData().getUserName());
+        email.setText(SmartAppication.getInstance().getPreferenceData().getUserEmail());
+    }
+    public void setUpNavigationViewAdmin(NavigationView upNavigationViewAdmin) {
+        upNavigationViewAdmin.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()) {
+                    case R.id.nav_item_cust_home:
+                        replaceCustomerHomeFragment();
+                        break;
+                    case R.id.nav_item_cust_management:
+                        replaceCustomerFragment();
+                        break;
+                    case R.id.nav_item_logout:
+                        SmartAppication.getInstance().getPreferenceData().setIsLoggedIn(false);
+                        MainActivity.this.finish();
+                        startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                        break;
+                    default:
+                        break;
+                }
+
+
+
+                //close the drawer when user selects a nav item.
+                drawerLayout.closeDrawers();
+                return true;
+            }
+        });
+    }
+
+    private void replaceCustomerHomeFragment() {
+        add(CustHomeFragment.newInstance());
+    }
+
+    private void setUpNavigationView(final NavigationView navigationView) {
+        navigationView.setNavigationItemSelectedListener(
+                new NavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(MenuItem menuItem) {
+                        //replace the current fragment with the new fragment.
+                        //Fragment selectedFragment = selectDrawerItem(menuItem);
+
+
+
+                            switch (menuItem.getItemId()) {
+
+                                case R.id.nav_item_home:
+                                    replaceHomeFragment();
+                                    break;
+                                case R.id.nav_item_itemized:
+                                    replaceItemizedFragment();
+                                    break;
+                                case R.id.nav_item_charts:
+                                    replaceChartFragment();
+                                    break;
+                                case R.id.nav_item_bills:
+                                    replaceBillsFragment();
+                                    break;
+                                case R.id.nav_item_payments:
+                                    replacePaymentFragment();
+                                    break;
+                                case R.id.nav_item_logout:
+                                    SmartAppication.getInstance().getPreferenceData().setIsLoggedIn(false);
+                                    MainActivity.this.finish();
+                                    startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                                    break;
+                                default:
+                                    break;
+                            }
+
+
+
+
+                        //close the drawer when user selects a nav item.
+                        drawerLayout.closeDrawers();
+                        return true;
+                    }
+                });
+    }
+
+    private void replaceCustomerFragment() {
+        add(CustManagementFragment.newInstance());
+    }
+
+    private void replaceItemizedFragment() {
+        add(ItemizedFragment.newInstance());
+    }
+    private void replaceChartFragment() {
+        add(ChartFragment.newInstance());
+    }
+    public void replaceBillsFragment() {
+        add(BillsFragment.newInstance());
+    }
+
+    public void replacePaymentFragment() {
+        add(PaymentFragment.newInstance());
+    }
+    @Override
+    protected void onDestroy() {
+        fragmentManager.removeOnBackStackChangedListener(backStackListener);
+        fragmentManager = null;
+        super.onDestroy();
+    }
+
+
+    public Fragment selectDrawerItem(MenuItem menuItem) {
+        Fragment fragment = null;
+        switch (menuItem.getItemId()) {
+            case R.id.nav_item_home:
+                fragment = new HomeFragment();
+                break;
+            case R.id.nav_item_itemized:
+                fragment = new ItemizedFragment();
+                break;
+            case R.id.nav_item_charts:
+                fragment = new ChartFragment();
+                break;
+            case R.id.nav_item_bills:
+                fragment = new BillsFragment();
+                break;
+            case R.id.nav_item_payments:
+                fragment = new PaymentFragment();
+                break;
+            case R.id.nav_item_logout:
+                SmartAppication.getInstance().getPreferenceData().setIsLoggedIn(false);
+                MainActivity.this.finish();
+                startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                break;
+        }
+        return fragment;
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        drawerToggle.onConfigurationChanged(newConfig);
+    }
+
+
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        drawerToggle.syncState();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.cust_mangment_menu, menu);
+        return true;
+    }
+
+
+
+    @Override
+    public void sendBillHistory(String accNo, Fragment fragment) {
+        if(fragment != null){
+            ((BillHistoryFragment)fragment).setBillHistory(accNo);
+        }
+    }
+
+    @Override
+    public void sendAccSummary(String billNo, Fragment fragment) {
+        if(fragment != null){
+            ((AccountSummeryFragment)fragment).setAccSummary(billNo);
+        }
+    }
+
+    @Override
+    public void sendServiceSummary(String email, String accNo, String billNo,Fragment fragment) {
+        if(fragment != null){
+            ((ServiceSummeryFragment)fragment).setServiceSummary(email,accNo,billNo);
+        }
+    }
+
+    public ActionBarDrawerToggle getDrawerToggle() {
+        return drawerToggle;
+    }
+
+    public DrawerLayout getDrawer() {
+        return drawerLayout;
+    }
+
+
+}

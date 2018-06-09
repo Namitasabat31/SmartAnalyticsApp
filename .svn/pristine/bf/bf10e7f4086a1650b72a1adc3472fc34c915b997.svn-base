@@ -1,0 +1,103 @@
+package smartanalytics.diksha.com.smartanalytics.fragment;
+
+
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+
+import com.squareup.otto.Subscribe;
+
+import java.util.ArrayList;
+
+import smartanalytics.diksha.com.smartanalytics.R;
+import smartanalytics.diksha.com.smartanalytics.commonutils.LogUtils;
+import smartanalytics.diksha.com.smartanalytics.core.SmartAppication;
+import smartanalytics.diksha.com.smartanalytics.data.Constants;
+import smartanalytics.diksha.com.smartanalytics.data.ServiceSummaryData;
+import smartanalytics.diksha.com.smartanalytics.network.OttoEvent;
+
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public class ServiceSummeryFragment extends BaseFragment {
+    public String TAG = ServiceSummeryFragment.class.getSimpleName();
+
+    public ServiceSummeryFragment() {
+        // Required empty public constructor
+    }
+
+    TextView tvVoiceMS, tvDataMS, tvSMSMS, tvVoiceFL, tvDataBS,tvTotal;
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View v = inflater.inflate(R.layout.fragment_service_summery, container, false);
+        tvVoiceMS = v.findViewById(R.id.tvVoiceValue);
+        tvDataMS = v.findViewById(R.id.tvdataValue);
+        tvSMSMS = v.findViewById(R.id.tvSMSValue);
+        tvVoiceFL = v.findViewById(R.id.tvVoiceFLValue);
+        tvDataBS = v.findViewById(R.id.tvDataBRValue);
+        tvTotal = v.findViewById(R.id.tvTotalAccountvalue);
+        return v;
+    }
+
+    @Override
+    protected <T> void onResponse(T t, int id) throws Exception {
+        LogUtils.logD(TAG, t.toString());
+
+    }
+
+    @Subscribe
+    public void onOttoEventReceived(OttoEvent event) {
+
+
+        try {
+            super.onOttoEventReceived(event);
+
+        } catch (Exception e) {
+            LogUtils.logD(TAG, "Exception --> " + e.getMessage());
+        }
+
+    }
+
+    public void setServiceSummary(String email, String accNo, String billNo) {
+        ArrayList<ServiceSummaryData> datalist = SmartAppication.getInstance().getmDatabaseHelper().getServiceSummaryData(email, accNo, billNo);
+        double total=0;
+        if(datalist.size() > 0) {
+            for (int i = 0; i < datalist.size(); i++) {
+                ServiceSummaryData data = datalist.get(i);
+                if (data.getServiceTypeDesc().equalsIgnoreCase(Constants.MOBILE_SERVICE)) {
+                    if (data.getUsageGroupDesc().equalsIgnoreCase(Constants.DATA)) {
+                        tvDataMS.setText("₹ " + data.getAmount());
+                        total = total+Double.parseDouble(data.getAmount());
+                    } else if (data.getUsageGroupDesc().equalsIgnoreCase(Constants.SMS)) {
+                        tvSMSMS.setText("₹ " + data.getAmount());
+                        total = total+Double.parseDouble(data.getAmount());
+                    } else if (data.getUsageGroupDesc().equalsIgnoreCase(Constants.VOICE)) {
+                        tvVoiceMS.setText("₹ " + data.getAmount());
+                        total = total+Double.parseDouble(data.getAmount());
+                    }
+
+                }else if (data.getServiceTypeDesc().equals(Constants.FIXED_LINE_SERVICE)) {
+                   if (data.getUsageGroupDesc().equalsIgnoreCase(Constants.VOICE)) {
+                        tvVoiceFL.setText("₹ " + data.getAmount());
+                       total = total+Double.parseDouble(data.getAmount());
+                    }
+
+                }else if (data.getServiceTypeDesc().equals(Constants.BROADBAND_SERVICE)) {
+                    if (data.getUsageGroupDesc().equalsIgnoreCase(Constants.DATA)) {
+                        tvDataBS.setText("₹ " + data.getAmount());
+                        total = total+Double.parseDouble(data.getAmount());
+                    }
+
+                }
+            }
+            tvTotal.setText("₹ " +total);
+        }
+
+    }
+}
